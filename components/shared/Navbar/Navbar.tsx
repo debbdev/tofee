@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
@@ -11,7 +10,7 @@ import MobileNav from "./MobileNav";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
-function navbar() {
+export default function Navbar() {
   const { user } = useUser();
   return (
     <nav className="background-light900_dark200 fixed z-50 flex w-full justify-around gap-96 p-6 shadow-light-300 dark:shadow-none sm:px-12">
@@ -80,5 +79,3 @@ function navbar() {
     </nav>
   );
 }
-
-export default navbar;

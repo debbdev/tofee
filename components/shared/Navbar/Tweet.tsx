@@ -16,14 +16,15 @@ export default function TweetPage() {
   }, []);
 
   return (
-    <div>
-      <Link
-        className="twitter-timeline"
-        data-width="500"
-        data-height="500"
-        href="https://twitter.com/trondao?ref_src=twsrc%5Etfw"
-      >
-        Tweets by trondao
+    <div className="flex h-screen items-center justify-center">
+      <Link href="https://twitter.com/trondao?ref_src=twsrc%5Etfw">
+        <a
+          data-width="500"
+          data-height="700"
+          className="h-auto w-full max-w-md"
+        >
+          Tweets by trondao
+        </a>
       </Link>
     </div>
   );
