@@ -2,28 +2,14 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
-import {
-  SignedIn,
-  UserButton,
-  SignedOut,
-  SignInButton,
-  useUser,
-  SignUp,
-  SignIn,
-} from "@clerk/nextjs";
+import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
+import { useUser } from "@clerk/clerk-react";
 import Page from "@/app/(auth)/sign-in/[[...sign-in]]/page";
 // import Page2 from "@/app/(auth)/sign-up/[[...sign-up]]/page";
 import Theme from "./Theme";
 import MobileNav from "./MobileNav";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 function navbar() {
   const { user } = useUser();

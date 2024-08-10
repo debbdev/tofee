@@ -24,9 +24,9 @@ function Discover() {
           <Link href="/">Sell Tron energy</Link>
           <br />
           <p>
-            Don't be fooled by Tron mining sites that don't exist, dive into
-            real gains through holding TEM and enjoy passive income with our
-            comprehensive Tron pool solution.
+            Don `&apos;`t be fooled by Tron mining sites that don`&apos;`t
+            exist, dive into real gains through holding TEM and enjoy passive
+            income with our comprehensive Tron pool solution.
           </p>
           <br />
           <p>

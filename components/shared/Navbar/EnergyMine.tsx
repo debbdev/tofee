@@ -1,24 +1,7 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Label } from "@radix-ui/react-menubar";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
@@ -59,8 +42,8 @@ function EnergyMine() {
                   ecosystem. FEM gives a HUGE 90% of generated benefits back to
                   investors every single day and is designed to be the top
                   selection for individuals wanting to maximize their passive
-                  income. <br /> <br /> Moreover, there's no requirement for
-                  TRON staking! Simply mint FEM, and begin receiving TRON
+                  income. <br /> <br /> Moreover, there`&apos;`s no requirement
+                  for TRON staking! Simply mint FEM, and begin receiving TRON
                   rewards. FEM is the only token that represents a simple
                   pathway to generating TRON passive income with minimal effort.
                 </p>
@@ -91,10 +74,10 @@ function EnergyMine() {
           </Card>
           <Card className="text-dark100_light900 background-light900_dark200">
             <CardContent className=" flex flex-1 flex-col gap-6">
-              <Form>
+              <form>
                 <div className="flex-between flex w-80 flex-wrap gap-4">
                   <div className="flex-between flex w-full gap-6">
-                    <Label htmlFor="name">Resource</Label>
+                    <label htmlFor="name">Resource</label>
                     <Select>
                       <SelectTrigger id="framework">
                         <SelectValue placeholder="Select" />
@@ -140,7 +123,7 @@ function EnergyMine() {
                     />
                   </div>
                 </div>
-              </Form>
+              </form>
             </CardContent>
           </Card>
         </div>
