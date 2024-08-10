@@ -1,5 +1,4 @@
 "use client";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   Sheet,
   SheetContent,
@@ -20,7 +19,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@radix-ui/react-menubar";
 import {
   Select,
   SelectContent,
@@ -28,15 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 
 const NavContent = () => {
   const pathname = usePathname();
@@ -81,10 +70,10 @@ const NavContent = () => {
                       <DialogContent className="text-dark100_light900 background-light900_dark200">
                         <div className="text-dark100_light900 background-light900_dark200 py-5">
                           <div className=" flex flex-1 flex-col gap-6">
-                            <Form>
+                            <form>
                               <div className="flex-between flex w-80 flex-wrap gap-4">
                                 <div className="flex-between flex w-full gap-6">
-                                  <Label htmlFor="name">Resource</Label>
+                                  <label htmlFor="name">Resource</label>
                                   <Select>
                                     <SelectTrigger id="framework">
                                       <SelectValue placeholder="Select" />
@@ -134,7 +123,7 @@ const NavContent = () => {
                                   />
                                 </div>
                               </div>
-                            </Form>
+                            </form>
                           </div>
                         </div>
                       </DialogContent>
