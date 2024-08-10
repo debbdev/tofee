@@ -21,6 +21,14 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/services/twitter.ts",
+    "components/shared/Navbar/Twitter.js",
+    "app/services/twitter.ts"
+  ],
   "exclude": ["node_modules"]
 }
