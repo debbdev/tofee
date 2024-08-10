@@ -38,3 +38,8 @@ export interface TweetData {
   author_name: string;
   author_url: string;
 }
+export interface TwitterInfo {
+  name: string;
+  username: string;
+  text: string;
+}

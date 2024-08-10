@@ -1,5 +1,5 @@
 // pages/tweet.tsx
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 
 export default function TweetPage() {
@@ -7,7 +7,7 @@ export default function TweetPage() {
     const script = document.createElement("script");
     script.src = "https://platform.twitter.com/widgets.js";
     script.async = true;
-    script.charSet = "utf-8";
+    script.charset = "utf-8";
     document.body.appendChild(script);
 
     return () => {
