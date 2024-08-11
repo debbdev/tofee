@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import Tweet from "./Tweet";
 
 function Discover() {
@@ -19,14 +18,11 @@ function Discover() {
             Unlock the full potential of our platform, making use of our
             automated features, including:
           </p>
-          <Link href="/">Sell Tron energy</Link>
-          <Link href="/">Sell Tron energy</Link>
-          <Link href="/">Sell Tron energy</Link>
           <br />
           <p>
-            Don `&apos;`t be fooled by Tron mining sites that don`&apos;`t
-            exist, dive into real gains through holding TEM and enjoy passive
-            income with our comprehensive Tron pool solution.
+            Don&apos;t be fooled by Tron mining sites that don&apos;t exist,
+            dive into real gains through holding TEM and enjoy passive income
+            with our comprehensive Tron pool solution.
           </p>
           <br />
           <p>
@@ -48,11 +44,7 @@ function Discover() {
           <Link href="/">Terms & conditions</Link>
         </div>
         <div className="w-96">
-          <Card>
-            <CardContent>
-              <Tweet />
-            </CardContent>
-          </Card>
+          <Tweet />
         </div>
       </div>
     </section>

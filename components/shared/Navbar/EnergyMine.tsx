@@ -2,15 +2,11 @@ import React from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import FlipCountdown from "@rumess/react-flip-countdown";
+import { useTheme } from "@/context/ThemeProvider";
 
 function EnergyMine() {
+  const { mode } = useTheme();
   return (
     <section className="border-r border-none bg-lime-400 py-10 shadow-light-300 dark:shadow-none">
       <div className="flex justify-center gap-10">
@@ -42,7 +38,7 @@ function EnergyMine() {
                   ecosystem. FEM gives a HUGE 90% of generated benefits back to
                   investors every single day and is designed to be the top
                   selection for individuals wanting to maximize their passive
-                  income. <br /> <br /> Moreover, there`&apos;`s no requirement
+                  income. <br /> <br /> Moreover, there&apos;s no requirement
                   for TRON staking! Simply mint FEM, and begin receiving TRON
                   rewards. FEM is the only token that represents a simple
                   pathway to generating TRON passive income with minimal effort.
@@ -69,12 +65,62 @@ function EnergyMine() {
         <div className="flex flex-col">
           <Card className="text-dark100_light900 background-light900_dark200 mb-8">
             <CardContent>
-              <h2> Next FEM & TRX rewards in:</h2>
+              <h2 className="py-4"> Next FEM & TRX rewards in:</h2>
+              <FlipCountdown
+                hideYear
+                hideMonth
+                hideDay
+                endAtZero
+                titlePosition="bottom"
+                hourTitle="Hours"
+                minuteTitle="Minutes"
+                secondTitle="Seconds"
+                endAt={"2025-12-12 01:26:58"}
+                theme={mode === "dark" ? "dark" : "light"}
+              />
             </CardContent>
           </Card>
           <Card className="text-dark100_light900 background-light900_dark200">
-            <CardContent className=" flex flex-1 flex-col gap-6">
-              <form>
+            <CardContent className="">
+              <h5 className="mt-5 text-center">Token Exchange (TRX/USDT)</h5>
+              <h6 className="active-theme mt-0 pt-0">
+                Exchange Quantity = (Received Quantity × Exchange Rate - Gas
+                fee)
+              </h6>
+              <div className="">
+                <form>
+                  <div className="flex-between gap-1">
+                    <div className="flex-between w-full flex-col gap-1">
+                      <label htmlFor="name">USDT</label>
+                      <input
+                        type="text"
+                        className="text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center"
+                      />
+                      <label htmlFor="name">TRX</label>
+                      <input
+                        type="text"
+                        className="text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center"
+                      />
+                      <label htmlFor="name">Platform Exchange Address</label>
+                      <input
+                        type="text"
+                        className="text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center"
+                        placeholder="Exchange Address"
+                      />
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div className="">
+                <h6 className="active-theme pt-4">Amount</h6>
+                <p className="text-left lg:w-[520px]">
+                  Just transfer TRX or USDT token to the platform exchange
+                  address, then the platform will automatically transfer the
+                  corresponding amount of USDT or TRX token after receiving your
+                  exchange amount to your transfer address.
+                </p>
+              </div>
+              {/* <form>
                 <div className="flex-between flex w-80 flex-wrap gap-4">
                   <div className="flex-between flex w-full gap-6">
                     <label htmlFor="name">Resource</label>
@@ -123,7 +169,7 @@ function EnergyMine() {
                     />
                   </div>
                 </div>
-              </form>
+              </form> */}
             </CardContent>
           </Card>
         </div>

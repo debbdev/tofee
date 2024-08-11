@@ -1,8 +1,10 @@
 // pages/tweet.tsx
 import { useEffect } from "react";
 import Link from "next/link";
+import { useTheme } from "@/context/ThemeProvider";
 
-export default function TweetPage() {
+export default function Tweet() {
+  const { mode } = useTheme();
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://platform.twitter.com/widgets.js";
@@ -16,16 +18,38 @@ export default function TweetPage() {
   }, []);
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <Link href="https://twitter.com/trondao?ref_src=twsrc%5Etfw">
-        <a
+    <div className="text-dark100_light900 background-light900_dark200">
+      {mode === "light" ? (
+        <Link
+          // eslint-disable-next-line tailwindcss/no-custom-classname
+          className="twitter-timeline"
           data-width="500"
-          data-height="700"
-          className="h-auto w-full max-w-md"
+          data-height="500"
+          href="https://twitter.com/trondao?ref_src=twsrc%5Etfw"
         >
           Tweets by trondao
-        </a>
-      </Link>
+        </Link>
+      ) : (
+        <Link
+          // eslint-disable-next-line tailwindcss/no-custom-classname
+          className="twitter-timeline"
+          data-width="500"
+          data-height="500"
+          data-theme="dark"
+          href="https://twitter.com/trondao?ref_src=twsrc%5Etfw"
+        >
+          Tweets by trondao
+        </Link>
+      )}
+      {/* <Link
+        // eslint-disable-next-line tailwindcss/no-custom-classname
+        className="twitter-timeline"
+        data-width="500"
+        data-height="700"
+        href="https://twitter.com/trondao?ref_src=twsrc%5Etfw"
+      >
+        Tweets by trondao
+      </Link> */}
     </div>
   );
 }
