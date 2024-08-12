@@ -9,8 +9,8 @@ function EnergyMine() {
   const { mode } = useTheme();
   return (
     <section className="border-r border-none bg-lime-400 py-10 shadow-light-300 dark:shadow-none">
-      <div className="flex justify-center gap-10">
-        <div className="">
+      <div className="me-60 ms-60 flex justify-center gap-5 ">
+        <div className="ms-10">
           <Card className="text-dark100_light900 background-light900_dark200 py-14">
             <CardContent className="flex-between flex gap-10">
               <Image

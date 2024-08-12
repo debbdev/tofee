@@ -43,3 +43,12 @@ export interface TwitterInfo {
   username: string;
   text: string;
 }
+export interface Transactions {
+  info: string;
+  buyer: string;
+  exchange: string;
+  energy: string;
+  date: string;
+  payout: string;
+  status: string;
+}

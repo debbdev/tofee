@@ -1,4 +1,10 @@
-import { SidebarLink, Payment, Logos, EmbeddedTweet } from "@/types";
+import {
+  SidebarLink,
+  Payment,
+  Logos,
+  EmbeddedTweet,
+  Transactions,
+} from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 
 export const themes = [
@@ -126,36 +132,36 @@ export const payments: Payment[] = [
   },
   // ...
 ];
-export const columns: ColumnDef<Payment>[] = [
-  {
-    accessorKey: "info",
-    header: "Info",
-  },
-  {
-    accessorKey: "date",
-    header: "Date",
-  },
-  {
-    accessorKey: "resource",
-    header: "Resource",
-  },
-  {
-    accessorKey: "price",
-    header: "Price",
-  },
-  {
-    accessorKey: "payout",
-    header: "Payout",
-  },
-  {
-    accessorKey: "fullfilled",
-    header: "Fullfilled",
-  },
-  {
-    accessorKey: "sell",
-    header: "Status",
-  },
-];
+// export const columns: ColumnDef<Payment>[] = [
+//   {
+//     accessorKey: "info",
+//     header: "Info",
+//   },
+//   {
+//     accessorKey: "date",
+//     header: "Date",
+//   },
+//   {
+//     accessorKey: "resource",
+//     header: "Resource",
+//   },
+//   {
+//     accessorKey: "price",
+//     header: "Price",
+//   },
+//   {
+//     accessorKey: "payout",
+//     header: "Payout",
+//   },
+//   {
+//     accessorKey: "fullfilled",
+//     header: "Fullfilled",
+//   },
+//   {
+//     accessorKey: "sell",
+//     header: "Status",
+//   },
+// ];
 export const logo: Logos[] = [
   {
     imgURL: "assets/icons/vechain.svg",
@@ -213,6 +219,156 @@ export const embeddedTweet: EmbeddedTweet[] = [
   },
   {
     url_id: "1366310778450702341",
+  },
+];
+export const transactions: Transactions[] = [
+  {
+    buyer: "TVcN *** 5qRT",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "65600",
+    date: "2024-07-12",
+    payout: "32,300",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+  {
+    buyer: "TAAQ *** g1d2",
+    info: "i",
+    exchange: "TRX To Energy",
+    energy: "85600",
+    date: "2024-07-08",
+    payout: "42,500",
+    status: "completed",
+  },
+];
+export const columns: ColumnDef<Transactions>[] = [
+  {
+    accessorKey: "info",
+    header: "Info",
+  },
+  {
+    accessorKey: "date",
+    header: "Date",
+  },
+  {
+    accessorKey: "buyer",
+    header: "Buyer",
+  },
+  {
+    accessorKey: "exchange",
+    header: "Exchange",
+  },
+  {
+    accessorKey: "energy",
+    header: "Energy",
+  },
+  {
+    accessorKey: "payout",
+    header: "Payout",
+  },
+
+  {
+    accessorKey: "status",
+    header: "Status",
   },
 ];
 // export const embeddedTweet: EmbeddedTweet[] = [

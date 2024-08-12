@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -14,8 +14,22 @@ import {
 } from "@/components/ui/hover-card";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import { useTheme } from "@/context/ThemeProvider";
 
 function BuyEnergy() {
+  const { mode } = useTheme();
+  const [transfer, setTransfer] = useState<number | string>("");
+  // eslint-disable-next-line no-unused-vars
+  const [selectMode, setSelectMode] = useState<number | null>(null);
+
+  const onSelectModeChange = (value: string) => {
+    const selectedValue = parseFloat(value);
+    setSelectMode(selectedValue);
+  };
+
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTransfer(e.target.value);
+  };
   return (
     <div className="custom-scrollbar sticky  left-0 top-0 ms-64 flex h-full flex-col justify-between overflow-y-auto border-r border-none p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[406px]">
       <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
@@ -49,17 +63,39 @@ function BuyEnergy() {
               </div>
               <div className="flex flex-col space-y-1.5">
                 <div className="flex-between gap-5">
-                  <Input id="number" placeholder="10" />
-                  <Select>
+                  {mode === "light" ? (
+                    <Input
+                      id="number"
+                      type="text"
+                      value={transfer}
+                      onInput={onChangeInput}
+                      placeholder="10"
+                      className="text-dark100_light900 background-light900_dark200"
+                    />
+                  ) : (
+                    <Input
+                      id="number"
+                      type="text"
+                      value={transfer}
+                      onInput={onChangeInput}
+                      placeholder="10"
+                      className="text-dark100_light900 background-light900_dark200"
+                    />
+                  )}
+
+                  <Select onValueChange={onSelectModeChange}>
                     <SelectTrigger id="framework">
                       <SelectValue placeholder="Select" />
                     </SelectTrigger>
-                    <SelectContent position="popper">
-                      <SelectItem value="2.5 TRX /10 Minute">
-                        2.5 TRX /10 Minute
+                    <SelectContent
+                      position="popper"
+                      className="text-dark100_light900 background-light900_dark200"
+                    >
+                      <SelectItem id="mySelect" value="2.5">
+                        2.5 TRX/10 Minute
                       </SelectItem>
-                      <SelectItem value="2.8 TRX /1 Hour">
-                        2.8 TRX /1 Hour
+                      <SelectItem id="mySelect" value="2.8">
+                        2.8 TRX/1 Hour
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -189,11 +225,11 @@ function BuyEnergy() {
             <div>
               <h6>Amount</h6>
             </div>
-            <div className="flex">
-              <div className="h-8 w-16 rounded-l-md bg-white px-2 py-1">
+            <div className="flex cursor-pointer">
+              <div className="h-8 w-16 rounded-l-md bg-white px-2 py-1 text-base text-black">
                 TRX
               </div>
-              <div className="h-8 w-16 rounded-r-md bg-green-700 px-2 py-1">
+              <div className="h-8 w-16 rounded-r-md bg-green-700 px-2 py-1 text-base">
                 USDT
               </div>
             </div>
