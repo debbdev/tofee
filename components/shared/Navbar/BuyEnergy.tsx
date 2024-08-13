@@ -30,15 +30,47 @@ function BuyEnergy() {
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTransfer(e.target.value);
   };
+  const calculateResult = () => {
+    const transferValue = parseFloat(transfer as string);
+    if (transferValue && selectMode) {
+      return (transferValue * selectMode).toFixed(2);
+    }
+    return "";
+  };
+  const calculateSavings = (transfer: number, selectMode: number): string => {
+    if (transfer !== null && selectMode !== null) {
+      const calcResult = transfer * selectMode;
+      const referenceValue = 168;
+      const savings = referenceValue - calcResult;
+
+      // Ensure the savings result is rounded to 2 decimal places
+      return savings.toFixed(2);
+    }
+
+    // Return an empty string if no valid calculation can be made
+    return "";
+  };
+
   return (
     <div className="custom-scrollbar sticky  left-0 top-0 ms-64 flex h-full flex-col justify-between overflow-y-auto border-r border-none p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[406px]">
       <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
         <CardContent className=" flex flex-1 flex-col gap-6">
           <div className="flex-start">
-            <h6>
-              <span className="mr-3 rounded-md bg-red-950 p-2">01</span>
-              Quantity
-            </h6>
+            {mode === "light" ? (
+              <h6>
+                <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
+                  01
+                </span>
+                Quantity
+              </h6>
+            ) : (
+              <h6>
+                <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
+                  01
+                </span>
+                Quantity
+              </h6>
+            )}
           </div>
           <form>
             <div className="flex-between w-80 flex-wrap gap-4">
@@ -61,7 +93,7 @@ function BuyEnergy() {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className="flex flex-col space-y-1.5">
+              <div className="flex w-80 flex-col space-y-1.5">
                 <div className="flex-between gap-5">
                   {mode === "light" ? (
                     <Input
@@ -216,17 +248,28 @@ function BuyEnergy() {
       <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
         <CardContent className=" flex flex-1 flex-col gap-6">
           <div className="flex-start">
-            <h6>
-              <span className="mr-3 rounded-md bg-red-950 p-2">02</span>
-              Payment
-            </h6>
+            {mode === "light" ? (
+              <h6>
+                <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
+                  02
+                </span>
+                Payment
+              </h6>
+            ) : (
+              <h6>
+                <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
+                  02
+                </span>
+                Payment
+              </h6>
+            )}
           </div>
-          <div className="flex-between w-60">
+          <div className="flex-between w-80">
             <div>
               <h6>Amount</h6>
             </div>
             <div className="flex cursor-pointer">
-              <div className="h-8 w-16 rounded-l-md bg-white px-2 py-1 text-base text-black">
+              <div className="h-8 w-16 rounded-l-md border-2 border-solid  bg-white px-2 py-1 text-base text-black">
                 TRX
               </div>
               <div className="h-8 w-16 rounded-r-md bg-green-700 px-2 py-1 text-base">
@@ -234,9 +277,9 @@ function BuyEnergy() {
               </div>
             </div>
           </div>
-          <div className="flex-between w-60">
+          <div className="flex-between w-80">
             <div className="flex-between gap-5">
-              <span>NaN</span>
+              <span className="">{calculateResult()}</span>
               <span>TRX</span>
               <span>
                 <Image
@@ -248,14 +291,17 @@ function BuyEnergy() {
                 />
               </span>
             </div>
-            <div className="text-dark100_light900 background-light900_dark200 rounded-md border p-2">
+            <div className="text-dark100_light900 background-light900_dark200 w-28 rounded-md border p-2">
               Flash Sale
             </div>
           </div>
-          <div className="flex-between text-dark100_light900 background-light900_dark200 w-60">
+          <div className="flex-between text-dark100_light900 background-light900_dark200 w-80">
             <h6>Save Approximately:</h6>
             <div className="flex-between gap-5">
-              <span>NaN</span>
+              {transfer && selectMode && (
+                <span>{calculateSavings(Number(transfer), selectMode)}</span>
+              )}
+
               <span>TRX</span>
             </div>
           </div>

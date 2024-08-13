@@ -11,7 +11,7 @@ function EnergyMine() {
     <section className="border-r border-none bg-lime-400 py-10 shadow-light-300 dark:shadow-none">
       <div className="me-60 ms-60 flex justify-center gap-5 ">
         <div className="ms-10">
-          <Card className="text-dark100_light900 background-light900_dark200 py-14">
+          <Card className="text-dark100_light900 background-light900_dark200 h-full py-14">
             <CardContent className="flex-between flex gap-10">
               <Image
                 src="/assets/icons/account.svg"
@@ -33,15 +33,12 @@ function EnergyMine() {
                   />
                 </div>
                 <p className="mt-3 w-96">
-                  Explore FEM, the real alternative to TRON mining. FEM is a
-                  unique token with one of the most impressive APYs in the TRON
-                  ecosystem. FEM gives a HUGE 90% of generated benefits back to
-                  investors every single day and is designed to be the top
-                  selection for individuals wanting to maximize their passive
-                  income. <br /> <br /> Moreover, there&apos;s no requirement
-                  for TRON staking! Simply mint FEM, and begin receiving TRON
-                  rewards. FEM is the only token that represents a simple
-                  pathway to generating TRON passive income with minimal effort.
+                  The FeeTrx energy Rental platform is an energy exchange
+                  platform in wave field ecology. Our goal is to reduce the TRX
+                  fee required for wave traders to consume energy. <br /> <br />
+                  The exchange process is simple and fast, with a favorable
+                  price. We provide you with a safer and more efficient energy
+                  exchange service 24 hours a day.
                 </p>
               </div>
             </CardContent>
