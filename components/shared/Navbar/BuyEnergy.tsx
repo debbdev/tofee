@@ -21,7 +21,7 @@ function BuyEnergy() {
   const [selectMode, setSelectMode] = useState<number | null>(null);
   const [currency, setCurrency] = useState<"TRX" | "USDT">("TRX");
   const [remainingEnergy, setRemainingEnergy] = useState<number>(44552265);
-  const flashSaleDiscount = 0.1; // 10% discount
+  const flashSaleDiscount = 1; // 10% discount
   // const [copyStatus, setCopyStatus] = useState<string>("");
   const [result, setResult] = useState<string | null>(null);
   const [dialog, setDialog] = useState<{ visible: boolean; message: string }>({
@@ -45,7 +45,7 @@ function BuyEnergy() {
       if (currency === "TRX") {
         calculatedResult = transferValue * selectMode;
       } else {
-        calculatedResult = transferValue * (selectMode / 1.2); // Example conversion rate
+        calculatedResult = transferValue * selectMode; // Example conversion rate
       }
       return calculatedResult.toFixed(2);
     }
@@ -54,10 +54,17 @@ function BuyEnergy() {
 
   // Calculate savings based on transfer, selectMode, and currency
   const calculateSavings = useMemo(() => {
-    if (transfer && selectMode) {
+    if (transfer && selectMode === 6) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
-      const referenceValue = 168;
+      const referenceValue = 13.5366 * transferValue;
+      const calculatedSavings =
+        (referenceValue - calcResult) * flashSaleDiscount;
+      return calculatedSavings.toFixed(2);
+    } else if (transfer && selectMode === 0.7) {
+      const transferValue = parseFloat(transfer as string);
+      const calcResult = transferValue * selectMode;
+      const referenceValue = 1.72 * transferValue;
       const calculatedSavings =
         (referenceValue - calcResult) * flashSaleDiscount;
       return calculatedSavings.toFixed(2);
@@ -156,11 +163,11 @@ function BuyEnergy() {
                       position="popper"
                       className="text-dark100_light900 background-light900_dark200"
                     >
-                      <SelectItem id="mySelect" value="2.5">
-                        2.5 TRX/10 Minute
+                      <SelectItem id="mySelect" value="6">
+                        6 TRX/1 Hour
                       </SelectItem>
-                      <SelectItem id="mySelect" value="2.8">
-                        2.8 TRX/1 Hour
+                      <SelectItem id="mySelect" value="0.7">
+                        0.7 USDT/Unlimited
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -169,13 +176,13 @@ function BuyEnergy() {
               <h6>
                 <span className="mr-3">32000</span>Energy per Transaction <br />
               </h6>
-              <h5>Remaining Energy of the platform</h5>
+              {/* <h5>Remaining Energy of the platform</h5>
               <input
                 type="text"
                 className="text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center"
                 value={remainingEnergy.toLocaleString()}
                 readOnly
-              />
+              /> */}
             </div>
           </form>
         </CardContent>
@@ -260,13 +267,13 @@ function BuyEnergy() {
             <div className="mt-2 flex-between gap-2 text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center">
               <input
                 type="text"
-                className="w-full"
-                value="TCMrBZoSt3Q4egHzd7ga21JCdZH7n3EEEE"
+                className="w-full text-dark100_light900 background-light900_dark200"
+                value="TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1"
                 readOnly
               />
               <span
                 className="w-6 cursor-pointer"
-                onClick={() => handleCopy("TCMrBZoSt3Q4egHzd7ga21JCdZH7n3EEEE")}
+                onClick={() => handleCopy("TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1")}
               >
                 <Dialog>
                   <DialogTrigger asChild>

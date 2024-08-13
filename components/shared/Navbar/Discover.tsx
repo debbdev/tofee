@@ -10,26 +10,21 @@ function Discover() {
           <h1 className="text-xl">Discover FeeTrx Energy Market!</h1>
           <br />
           <p>
-            Experience a new level of earning potential with staked Tron tokens
-            through our re-imagined tron energy rental platform.
+            The tron energy Rental platform is an energy exchange platform in
+            wave field ecology. Our goal is to reduce the TRX fee required for
+            wave traders to consume energy.
+            <br />
+            <br />
+            The exchange process is simple and fast, with a favorable price. We
+            provide you with a safer and more efficient energy exchange service
+            24 hours a day.
           </p>
           <br />
           <p>
             Unlock the full potential of our platform, making use of our
-            automated features, including:
+            automated features
           </p>
           <br />
-          <p>
-            Don&apos;t be fooled by Tron mining sites that don&apos;t exist,
-            dive into real gains through holding TEM and enjoy passive income
-            with our comprehensive Tron pool solution.
-          </p>
-          <br />
-          <p>
-            Empower yourself with a suite of cutting-edge tools, designed to
-            rent tron energy, optimize your Tron income and revolutionize your
-            earning capabilities.
-          </p>
         </div>
         <div className="flex flex-col sm:w-[650px] lg:w-52">
           <h1 className="text-xl">Links</h1>
