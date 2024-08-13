@@ -18,13 +18,14 @@ function EnergyMine() {
 
   // Conversion rate
   const conversionRate = 0.1284;
+  // const difference = 0.1;
 
   // Update TRX when USDT changes
   const handleUsdtChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const usdtValue = parseFloat(e.target.value);
     setUSDT(e.target.value);
     if (!isNaN(usdtValue)) {
-      setTRX((usdtValue * conversionRate).toFixed(2));
+      setTRX((usdtValue / conversionRate).toFixed(2));
     } else {
       setTRX("");
     }
@@ -35,7 +36,7 @@ function EnergyMine() {
     const trxValue = parseFloat(e.target.value);
     setTRX(e.target.value);
     if (!isNaN(trxValue)) {
-      setUSDT((trxValue / conversionRate).toFixed(2));
+      setUSDT((trxValue * conversionRate).toFixed(2));
     } else {
       setUSDT("");
     }
@@ -65,7 +66,7 @@ function EnergyMine() {
   return (
     <section className="border-r border-none bg-lime-400 py-10 shadow-light-300 dark:shadow-none">
       <div className="flex justify-center gap-5 sm:flex-wrap lg:flex-nowrap">
-        <div className="lg:ms-20 sm:me-10 sm:w-[650px] lg:w-[750px]">
+        <div className="sm:me-10 sm:w-[650px] lg:ms-20 lg:w-[750px]">
           <Card className="text-dark100_light900 background-light900_dark200 h-full py-14">
             <CardContent className="flex-between flex gap-10">
               <Image
@@ -95,7 +96,7 @@ function EnergyMine() {
                   price. We provide you with a safer and more efficient energy
                   exchange service 24 hours a day.
                 </p>
-                <h2 className="text-2xl pt-5 pb-2">Instructions</h2>
+                <h2 className="pb-2 pt-5 text-2xl">Instructions</h2>
                 <ul>
                   <li className="list-disc">
                     Please use decentralized wallet to rent energy.
@@ -136,7 +137,7 @@ function EnergyMine() {
             </CardFooter>
           </Card>
         </div>
-        <div className="flex flex-col sm:me-10 lg:me-16 sm:w-[650px] lg:w-[430px]">
+        <div className="flex flex-col sm:me-10 sm:w-[650px] lg:me-16 lg:w-[430px]">
           <Card className="text-dark100_light900 background-light900_dark200 mb-8">
             <CardContent>
               <h2 className="py-4"> Next FEM & TRX rewards in:</h2>
@@ -193,10 +194,10 @@ function EnergyMine() {
                           />
                         </span>
 
-                        <div className="mt-2 flex-between gap-2 text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center">
+                        <div className="flex-between text-dark100_light900 background-light900_dark200 mt-2 w-full gap-2 rounded-md border px-1 py-3 text-center">
                           <input
                             type="text"
-                            className="w-full text-dark100_light900 background-light900_dark200"
+                            className="text-dark100_light900 background-light900_dark200 w-full"
                             value="THH8j7n8kcq6DmdAkSrUhQzn63jPoTpsWw"
                             readOnly
                           />

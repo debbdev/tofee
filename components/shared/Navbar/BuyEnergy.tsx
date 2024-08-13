@@ -19,6 +19,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 function BuyEnergy() {
   const [transfer, setTransfer] = useState<number | string>("");
   const [selectMode, setSelectMode] = useState<number | null>(null);
+  // eslint-disable-next-line no-unused-vars
   const [currency, setCurrency] = useState<"TRX" | "USDT">("TRX");
   // const [remainingEnergy, setRemainingEnergy] = useState<number>(44552265);
   const flashSaleDiscount = 1; // 10% discount
@@ -112,7 +113,7 @@ function BuyEnergy() {
   };
 
   return (
-    <div className="custom-scrollbar left-0 top-0 lg:ms-64 flex h-full lg:flex-col sm:flex-row justify-around overflow-y-auto border-r border-none p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[406px] sm:ms-10 lg:gap-0 sm:gap-5 lg:flex-nowrap sm:flex-wrap">
+    <div className="custom-scrollbar left-0 top-0 flex h-full justify-around overflow-y-auto border-r border-none p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden sm:ms-10 sm:flex-row sm:flex-wrap sm:gap-5 lg:ms-64 lg:w-[406px] lg:flex-col lg:flex-nowrap lg:gap-0">
       <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
         <CardContent className=" flex flex-1 flex-col gap-6">
           <div className="flex-start">
@@ -201,7 +202,7 @@ function BuyEnergy() {
             <div>
               <h6>Amount</h6>
             </div>
-            <div className="flex cursor-pointer">
+            {/* <div className="flex cursor-pointer">
               <div
                 className={`h-8 w-16 rounded-l-md border-2 border-solid  bg-white px-2 py-1 text-base text-black ${currency === "TRX" ? "bg-green-700 text-white" : ""}`}
                 onClick={() => setCurrency("TRX")}
@@ -214,12 +215,12 @@ function BuyEnergy() {
               >
                 USDT
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="flex-between w-80">
             <div className="flex-between gap-5">
               <span className="">{calculateResult}</span>
-              <span>{currency}</span>
+              <span>{selectMode === 6 ? "TRX" : "USDT"}</span>
               <span onClick={() => handleCopy(calculateResult)}>
                 <Dialog>
                   <DialogTrigger asChild>
@@ -249,7 +250,7 @@ function BuyEnergy() {
             <h6>Save Approximately:</h6>
             <div className="flex-between gap-5">
               {transfer && selectMode && <span>{calculateSavings}</span>}
-              <span>{currency}</span>
+              <span>{selectMode === 6 ? "TRX" : "USDT"}</span>
             </div>
           </div>
           <div className="flex-start w-80 flex-wrap gap-2">
@@ -264,10 +265,10 @@ function BuyEnergy() {
               />
             </span>
 
-            <div className="mt-2 flex-between gap-2 text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center">
+            <div className="flex-between text-dark100_light900 background-light900_dark200 mt-2 w-full gap-2 rounded-md border px-1 py-3 text-center">
               <input
                 type="text"
-                className="w-full text-dark100_light900 background-light900_dark200"
+                className="text-dark100_light900 background-light900_dark200 w-full"
                 value="TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1"
                 readOnly
               />
