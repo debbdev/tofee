@@ -14,17 +14,9 @@ import {
 } from "@/components/ui/hover-card";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import { useTheme } from "@/context/ThemeProvider";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 function BuyEnergy() {
-  const { mode } = useTheme();
   const [transfer, setTransfer] = useState<number | string>("");
   const [selectMode, setSelectMode] = useState<number | null>(null);
   const [currency, setCurrency] = useState<"TRX" | "USDT">("TRX");
