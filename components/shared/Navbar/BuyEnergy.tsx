@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -15,62 +15,114 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeProvider";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 function BuyEnergy() {
   const { mode } = useTheme();
   const [transfer, setTransfer] = useState<number | string>("");
-  // eslint-disable-next-line no-unused-vars
   const [selectMode, setSelectMode] = useState<number | null>(null);
+  const [currency, setCurrency] = useState<"TRX" | "USDT">("TRX");
+  const [remainingEnergy, setRemainingEnergy] = useState<number>(44552265);
+  const flashSaleDiscount = 0.1; // 10% discount
+  // const [copyStatus, setCopyStatus] = useState<string>("");
+  const [result, setResult] = useState<string | null>(null);
+  const [dialog, setDialog] = useState<{ visible: boolean; message: string }>({
+    visible: false,
+    message: "",
+  });
 
   const onSelectModeChange = (value: string) => {
-    const selectedValue = parseFloat(value);
-    setSelectMode(selectedValue);
+    setSelectMode(parseFloat(value));
   };
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTransfer(e.target.value);
   };
-  const calculateResult = () => {
+
+  // Memoize the calculation result
+  const calculateResult = useMemo(() => {
     const transferValue = parseFloat(transfer as string);
     if (transferValue && selectMode) {
-      return (transferValue * selectMode).toFixed(2);
+      let calculatedResult;
+      if (currency === "TRX") {
+        calculatedResult = transferValue * selectMode;
+      } else {
+        calculatedResult = transferValue * (selectMode / 1.2); // Example conversion rate
+      }
+      return calculatedResult.toFixed(2);
     }
     return "";
-  };
-  const calculateSavings = (transfer: number, selectMode: number): string => {
-    if (transfer !== null && selectMode !== null) {
-      const calcResult = transfer * selectMode;
+  }, [transfer, selectMode, currency]);
+
+  // Calculate savings based on transfer, selectMode, and currency
+  const calculateSavings = useMemo(() => {
+    if (transfer && selectMode) {
+      const transferValue = parseFloat(transfer as string);
+      const calcResult = transferValue * selectMode;
       const referenceValue = 168;
-      const savings = referenceValue - calcResult;
-
-      // Ensure the savings result is rounded to 2 decimal places
-      return savings.toFixed(2);
+      const calculatedSavings =
+        (referenceValue - calcResult) * flashSaleDiscount;
+      return calculatedSavings.toFixed(2);
     }
-
-    // Return an empty string if no valid calculation can be made
     return "";
+  }, [transfer, selectMode, flashSaleDiscount]);
+
+  // Effect to update remaining energy
+  useEffect(() => {
+    if (transfer && selectMode) {
+      const transferValue = parseFloat(transfer as string);
+      const calcResult = transferValue * selectMode;
+      const energyUsed = calcResult * 32000;
+      setRemainingEnergy((prev) => prev - energyUsed);
+    }
+  }, [transfer, selectMode]);
+
+  // Handle copy functionality
+  // const handleCopy = (text: string) => {
+  //   navigator.clipboard.writeText(text).then(() => {
+  //     setCopyStatus("Copied!");
+  //     setTimeout(() => setCopyStatus(""), 2000);
+  //   });
+  // };
+  const handleCopy = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setResult(text);
+        setDialog({ visible: true, message: `${text} successfully Copied!` });
+
+        // Hide the dialog after 3 seconds
+        setTimeout(() => {
+          setDialog((prev) => ({ ...prev, visible: false }));
+        }, 3000); // Adjust the timeout duration as needed
+      })
+      .catch(() => {
+        setDialog({ visible: true, message: "Failed to copy!" });
+
+        // Hide the dialog after 3 seconds
+        setTimeout(() => {
+          setDialog((prev) => ({ ...prev, visible: false }));
+        }, 3000); // Adjust the timeout duration as needed
+      });
   };
 
   return (
-    <div className="custom-scrollbar sticky  left-0 top-0 ms-64 flex h-full flex-col justify-between overflow-y-auto border-r border-none p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[406px]">
+    <div className="custom-scrollbar left-0 top-0 lg:ms-64 flex h-full lg:flex-col sm:flex-row justify-around overflow-y-auto border-r border-none p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[406px] sm:ms-10 lg:gap-0 sm:gap-5 lg:flex-nowrap sm:flex-wrap">
       <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
         <CardContent className=" flex flex-1 flex-col gap-6">
           <div className="flex-start">
-            {mode === "light" ? (
-              <h6>
-                <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
-                  01
-                </span>
-                Quantity
-              </h6>
-            ) : (
-              <h6>
-                <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
-                  01
-                </span>
-                Quantity
-              </h6>
-            )}
+            <h6>
+              <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
+                01
+              </span>
+              Quantity
+            </h6>
           </div>
           <form>
             <div className="flex-between w-80 flex-wrap gap-4">
@@ -87,33 +139,22 @@ function BuyEnergy() {
                     />
                   </HoverCardTrigger>
                   <HoverCardContent className="text-dark100_light900 background-light900_dark200">
-                    Fill in your estimated daily number of times transactions
-                    and the system will automatically estimate the daily energy
+                    Fill in your estimated daily number of transactions and the
+                    system will automatically estimate the daily energy
                     consumption
                   </HoverCardContent>
                 </HoverCard>
               </div>
               <div className="flex w-80 flex-col space-y-1.5">
                 <div className="flex-between gap-5">
-                  {mode === "light" ? (
-                    <Input
-                      id="number"
-                      type="text"
-                      value={transfer}
-                      onInput={onChangeInput}
-                      placeholder="10"
-                      className="text-dark100_light900 background-light900_dark200"
-                    />
-                  ) : (
-                    <Input
-                      id="number"
-                      type="text"
-                      value={transfer}
-                      onInput={onChangeInput}
-                      placeholder="10"
-                      className="text-dark100_light900 background-light900_dark200"
-                    />
-                  )}
+                  <Input
+                    id="number"
+                    type="text"
+                    value={transfer}
+                    onInput={onChangeInput}
+                    placeholder="10"
+                    className="text-dark100_light900 background-light900_dark200"
+                  />
 
                   <Select onValueChange={onSelectModeChange}>
                     <SelectTrigger id="framework">
@@ -140,107 +181,9 @@ function BuyEnergy() {
               <input
                 type="text"
                 className="text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center"
-                value="40,854,495"
+                value={remainingEnergy.toLocaleString()}
+                readOnly
               />
-              {/* <div className="flex flex-col space-y-1.5">
-                <label htmlFor="name">Resource</label>
-                <Select>
-                  <SelectTrigger id="framework">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="next">Energy</SelectItem>
-                    <SelectItem value="sveltekit">BandWidth</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <label htmlFor="name">Duration</label>
-                <Select>
-                  <SelectTrigger id="framework">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="next">5 min</SelectItem>
-                    <SelectItem value="sveltekit">10 min</SelectItem>
-                    <SelectItem value="astro">15 min</SelectItem>
-                    <SelectItem value="nuxt">1 hour</SelectItem>
-                    <SelectItem value="nuxt">1 day</SelectItem>
-                    <SelectItem value="nuxt">2 days</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <label htmlFor="name">Price</label>
-                <Input id="number" placeholder="60" />
-              </div>
-              <div className="flex w-full flex-col space-y-1.5">
-                <label htmlFor="name">Target</label>
-                <Input id="name" placeholder="address" />
-              </div>
-              <div className="flex w-full flex-col space-y-1.5">
-                <div className="flex-between flex">
-                  <HoverCard>
-                    <HoverCardTrigger>
-                      <Image
-                        src="/assets/icons/account.svg"
-                        width={23}
-                        height={23}
-                        alt="settings"
-                        className="invert-colors"
-                      />
-                    </HoverCardTrigger>
-                    <HoverCardContent>Allow Partial Fill</HoverCardContent>
-                  </HoverCard>
-                  <HoverCard>
-                    <HoverCardTrigger>
-                      <Image
-                        src="/assets/icons/clock.svg"
-                        width={23}
-                        height={23}
-                        alt="settings"
-                        className="invert-colors"
-                      />
-                    </HoverCardTrigger>
-                    <HoverCardContent>Allow Partial Fill</HoverCardContent>
-                  </HoverCard>
-                </div>
-                <Input id="number" placeholder="100000" />
-              </div>
-              <div className="flex-between flex w-full ">
-                <p>Energy</p>
-                <div className="flex gap-2">
-                  <p>100,000</p>
-                  <Image
-                    src="/assets/icons/account.svg"
-                    width={10}
-                    height={10}
-                    alt="thunder"
-                    className="invert-colors"
-                  />
-                </div>
-              </div>
-              <div className="flex-between flex w-full ">
-                <p>Energy</p>
-                <p>18 TRX</p>
-              </div>
-              <div className="flex-between flex w-full ">
-                <Image
-                  src="/assets/icons/account.svg"
-                  width={23}
-                  height={23}
-                  alt="promo"
-                  className="invert-colors"
-                />
-                <p>18 TRX</p>
-                <Image
-                  src="/assets/icons/account.svg"
-                  width={23}
-                  height={23}
-                  alt="promo"
-                  className="invert-colors"
-                />
-              </div> */}
             </div>
           </form>
         </CardContent>
@@ -248,47 +191,55 @@ function BuyEnergy() {
       <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
         <CardContent className=" flex flex-1 flex-col gap-6">
           <div className="flex-start">
-            {mode === "light" ? (
-              <h6>
-                <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
-                  02
-                </span>
-                Payment
-              </h6>
-            ) : (
-              <h6>
-                <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
-                  02
-                </span>
-                Payment
-              </h6>
-            )}
+            <h6>
+              <span className="mr-3 rounded-md bg-red-950 p-2 text-white">
+                02
+              </span>
+              Payment
+            </h6>
           </div>
           <div className="flex-between w-80">
             <div>
               <h6>Amount</h6>
             </div>
             <div className="flex cursor-pointer">
-              <div className="h-8 w-16 rounded-l-md border-2 border-solid  bg-white px-2 py-1 text-base text-black">
+              <div
+                className={`h-8 w-16 rounded-l-md border-2 border-solid  bg-white px-2 py-1 text-base text-black ${currency === "TRX" ? "bg-green-700 text-white" : ""}`}
+                onClick={() => setCurrency("TRX")}
+              >
                 TRX
               </div>
-              <div className="h-8 w-16 rounded-r-md bg-green-700 px-2 py-1 text-base">
+              <div
+                className={`h-8 w-16 rounded-r-md border-2 border-solid  bg-white px-2 py-1 text-base text-black ${currency === "USDT" ? "bg-green-700 text-white" : ""}`}
+                onClick={() => setCurrency("USDT")}
+              >
                 USDT
               </div>
             </div>
           </div>
           <div className="flex-between w-80">
             <div className="flex-between gap-5">
-              <span className="">{calculateResult()}</span>
-              <span>TRX</span>
-              <span>
-                <Image
-                  src="/assets/icons/copy.svg"
-                  alt="sun"
-                  width={20}
-                  height={20}
-                  className="active-theme"
-                />
+              <span className="">{calculateResult}</span>
+              <span>{currency}</span>
+              <span onClick={() => handleCopy(calculateResult)}>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Image
+                      src="/assets/icons/copy.svg"
+                      alt="copy"
+                      width={20}
+                      height={20}
+                      className={`active-theme ${result ? "text-green-700" : "cursor-pointer"}`}
+                    />
+                  </DialogTrigger>
+                  {calculateResult && dialog.visible && (
+                    <DialogContent className="text-dark100_light900 background-light900_dark200">
+                      <span className="ml-2 text-green-700">
+                        {dialog.message || "Select Transfer and Mode"}
+                      </span>
+                    </DialogContent>
+                  )}
+                </Dialog>
               </span>
             </div>
             <div className="text-dark100_light900 background-light900_dark200 w-28 rounded-md border p-2">
@@ -298,112 +249,56 @@ function BuyEnergy() {
           <div className="flex-between text-dark100_light900 background-light900_dark200 w-80">
             <h6>Save Approximately:</h6>
             <div className="flex-between gap-5">
-              {transfer && selectMode && (
-                <span>{calculateSavings(Number(transfer), selectMode)}</span>
-              )}
-
-              <span>TRX</span>
+              {transfer && selectMode && <span>{calculateSavings}</span>}
+              <span>{currency}</span>
             </div>
           </div>
           <div className="flex-start w-80 flex-wrap gap-2">
-            {/* <div className="flex flex-col space-y-1.5">
-                <label htmlFor="name">Number of Transfers</label>
-                <div className="flex-between gap-5">
-                  <Input id="number" placeholder="10" />
-                  <Select>
-                    <SelectTrigger id="framework">
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                      <SelectItem value="2.5 TRX /10 Minute">
-                        2.5 TRX /10 Minute
-                      </SelectItem>
-                      <SelectItem value="2.8 TRX /1 Hour">
-                        2.8 TRX /1 Hour
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <h6>
-                <span className="mr-3">32000</span>Energy per Transaction <br />
-              </h6> */}
-
             <span>Platform Billing Address</span>
             <span>
               <Image
                 src="/assets/icons/qrcode1.svg"
-                width={10}
-                height={10}
+                width={20}
+                height={20}
                 alt="qrcode"
                 className="active-theme"
               />
             </span>
 
-            <div className="mt-2 w-80">
+            <div className="mt-2 flex-between gap-2 text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center">
               <input
                 type="text"
-                className="text-dark100_light900 background-light900_dark200 w-full rounded-md border px-1 py-3 text-center"
-                value="40,854,495"
+                className="w-full"
+                value="TCMrBZoSt3Q4egHzd7ga21JCdZH7n3EEEE"
+                readOnly
               />
+              <span
+                className="w-6 cursor-pointer"
+                onClick={() => handleCopy("TCMrBZoSt3Q4egHzd7ga21JCdZH7n3EEEE")}
+              >
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Image
+                      src="/assets/icons/copy.svg"
+                      alt="copy"
+                      width={20}
+                      height={20}
+                      className={`active-theme ${result ? "text-green-700" : ""}`}
+                    />
+                  </DialogTrigger>
+                  {dialog.visible && (
+                    <DialogContent className="text-dark100_light900 background-light900_dark200">
+                      <span className="ml-2 text-green-700">
+                        {"Wallet Address Successfully Copied!" || "Copy Filed"}
+                      </span>
+                    </DialogContent>
+                  )}
+                </Dialog>
+              </span>
             </div>
           </div>
         </CardContent>
       </Card>
-      {/* <Card className="text-dark100_light900 background-light900_dark200 py-5">
-        <CardContent className=" flex flex-1 flex-col gap-6">
-          <form>
-            <div className="flex-between flex w-80 flex-wrap gap-4">
-              <div className="flex-between flex w-full gap-6">
-                <label htmlFor="name">Resource</label>
-                <Select>
-                  <SelectTrigger id="framework">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="next">Energy</SelectItem>
-                    <SelectItem value="sveltekit">BandWidth</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex-between flex w-full ">
-                <p>Energy</p>
-                <div className="flex gap-2">
-                  <p>100,000</p>
-                  <Image
-                    src="/assets/icons/account.svg"
-                    width={10}
-                    height={10}
-                    alt="thunder"
-                    className="invert-colors"
-                  />
-                </div>
-              </div>
-              <div className="flex-between flex w-full ">
-                <p>Energy</p>
-                <p>18 TRX</p>
-              </div>
-              <div className="flex-between flex w-full ">
-                <Image
-                  src="/assets/icons/account.svg"
-                  width={23}
-                  height={23}
-                  alt="promo"
-                  className="invert-colors"
-                />
-                <p>18 TRX</p>
-                <Image
-                  src="/assets/icons/account.svg"
-                  width={23}
-                  height={23}
-                  alt="promo"
-                  className="invert-colors"
-                />
-              </div>
-            </div>
-          </form>
-        </CardContent>
-      </Card> */}
     </div>
   );
 }

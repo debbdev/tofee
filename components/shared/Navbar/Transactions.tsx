@@ -30,8 +30,8 @@ function Transactions<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
   });
   return (
-    <section className="light-border custom-scrollbar sticky left-0  top-0 flex flex-col justify-between overflow-y-auto border-r border-none p-6 pt-36  shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[900px]">
-      <div className="text-dark100_light900 background-light900_dark200 rounded-md border">
+    <section className="light-border custom-scrollbar sticky left-0  top-0 flex flex-col justify-around overflow-x-auto border-l border-none p-6 pt-36  shadow-light-300 dark:shadow-none max-sm:hidden lg:w-[880px] sm:w-[850px]">
+      <div className="text-dark100_light900 background-light900_dark200 rounded-md border sm:ms-10">
         <h1 className="text-center">ORDERS</h1>
         <Table>
           <TableHeader>

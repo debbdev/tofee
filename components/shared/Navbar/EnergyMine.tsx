@@ -9,8 +9,8 @@ function EnergyMine() {
   const { mode } = useTheme();
   return (
     <section className="border-r border-none bg-lime-400 py-10 shadow-light-300 dark:shadow-none">
-      <div className="me-60 ms-60 flex justify-center gap-5 ">
-        <div className="ms-10">
+      <div className="flex justify-center gap-5 sm:flex-wrap lg:flex-nowrap">
+        <div className="lg:ms-20 sm:me-10 sm:w-[650px] lg:w-[750px]">
           <Card className="text-dark100_light900 background-light900_dark200 h-full py-14">
             <CardContent className="flex-between flex gap-10">
               <Image
@@ -40,6 +40,28 @@ function EnergyMine() {
                   price. We provide you with a safer and more efficient energy
                   exchange service 24 hours a day.
                 </p>
+                <h2 className="text-2xl pt-5 pb-2">Instructions</h2>
+                <ul>
+                  <li className="list-disc">
+                    Please use decentralized wallet to rent energy.
+                  </li>
+                  <br />
+                  <li className="list-disc">
+                    According to the requirements, the system accountant
+                    calculates the total amount and amount. Support TRX or USDT
+                    payments.
+                  </li>
+                  <br />
+                  <li className="list-disc">
+                    After payment, the platform will distribute the
+                    corresponding energy to your account.
+                  </li>
+                  <br />
+                  <li className="list-disc">
+                    Advocate for on-demand leasing and use it again! Unlimited
+                    number of transactions per day!
+                  </li>
+                </ul>
               </div>
             </CardContent>
             <CardFooter className="mt-4 justify-center">
@@ -59,7 +81,7 @@ function EnergyMine() {
             </CardFooter>
           </Card>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col sm:me-10 lg:me-16 sm:w-[650px] lg:w-[430px]">
           <Card className="text-dark100_light900 background-light900_dark200 mb-8">
             <CardContent>
               <h2 className="py-4"> Next FEM & TRX rewards in:</h2>
@@ -77,10 +99,10 @@ function EnergyMine() {
               />
             </CardContent>
           </Card>
-          <Card className="text-dark100_light900 background-light900_dark200">
+          <Card className="text-dark100_light900 background-light900_dark200 h-full">
             <CardContent className="">
               <h5 className="mt-5 text-center">Token Exchange (TRX/USDT)</h5>
-              <h6 className="active-theme mt-0 pt-0">
+              <h6 className="active-theme mt-0 py-2 text-sm">
                 Exchange Quantity = (Received Quantity × Exchange Rate - Gas
                 fee)
               </h6>
@@ -109,8 +131,8 @@ function EnergyMine() {
                 </form>
               </div>
               <div className="">
-                <h6 className="active-theme pt-4">Amount</h6>
-                <p className="text-left lg:w-[520px]">
+                <h6 className="active-theme pt-6">Amount</h6>
+                <p className="text-left lg:w-full">
                   Just transfer TRX or USDT token to the platform exchange
                   address, then the platform will automatically transfer the
                   corresponding amount of USDT or TRX token after receiving your
