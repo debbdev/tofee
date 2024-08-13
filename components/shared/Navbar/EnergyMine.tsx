@@ -46,6 +46,7 @@ function EnergyMine() {
     navigator.clipboard
       .writeText(text)
       .then(() => {
+        setResult(text);
         setDialog({ visible: true, message: `${text} successfully Copied!` });
         setTimeout(
           () => setDialog((prev) => ({ ...prev, visible: false })),

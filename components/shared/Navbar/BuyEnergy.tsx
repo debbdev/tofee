@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -20,7 +20,7 @@ function BuyEnergy() {
   const [transfer, setTransfer] = useState<number | string>("");
   const [selectMode, setSelectMode] = useState<number | null>(null);
   const [currency, setCurrency] = useState<"TRX" | "USDT">("TRX");
-  const [remainingEnergy, setRemainingEnergy] = useState<number>(44552265);
+  // const [remainingEnergy, setRemainingEnergy] = useState<number>(44552265);
   const flashSaleDiscount = 1; // 10% discount
   // const [copyStatus, setCopyStatus] = useState<string>("");
   const [result, setResult] = useState<string | null>(null);
@@ -73,14 +73,14 @@ function BuyEnergy() {
   }, [transfer, selectMode, flashSaleDiscount]);
 
   // Effect to update remaining energy
-  useEffect(() => {
-    if (transfer && selectMode) {
-      const transferValue = parseFloat(transfer as string);
-      const calcResult = transferValue * selectMode;
-      const energyUsed = calcResult * 32000;
-      setRemainingEnergy((prev) => prev - energyUsed);
-    }
-  }, [transfer, selectMode]);
+  // useEffect(() => {
+  //   if (transfer && selectMode) {
+  //     const transferValue = parseFloat(transfer as string);
+  //     const calcResult = transferValue * selectMode;
+  //     const energyUsed = calcResult * 32000;
+  //     setRemainingEnergy((prev) => prev - energyUsed);
+  //   }
+  // }, [transfer, selectMode]);
 
   // Handle copy functionality
   // const handleCopy = (text: string) => {
