@@ -1,7 +1,7 @@
 import { SignInButton, UserProfile, useUser } from "@clerk/nextjs";
 import React from "react";
 
-function Profile() {
+function ProfilePage() {
   const { isSignedIn } = useUser();
   return (
     <div
@@ -12,4 +12,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ProfilePage;

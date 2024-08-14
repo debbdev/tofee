@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-function page() {
+function SupportPage() {
   return (
     <div>
       <Card>
@@ -18,4 +18,4 @@ function page() {
   );
 }
 
-export default page;
+export default SupportPage;
