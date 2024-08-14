@@ -16,8 +16,8 @@ import BuyEnergy from "./BuyEnergy";
 import CurrencyExchange from "./CurrencyExchange";
 import { Card, CardContent } from "@/components/ui/card";
 import FrequentlyAskedQuestion from "./FrequentlyAskedQuestion";
-import Profile from "./Profile";
-import Support from "./Support";
+import Profile from "@/app/(auth)/profile/[[...user-profile]]/page";
+import Support from "@/app/(auth)/support/[[...support]]/page";
 
 const NavContent = () => {
   const pathname = usePathname();
