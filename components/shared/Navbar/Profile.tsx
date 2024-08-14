@@ -1,5 +1,5 @@
 import React from "react";
-import ProfilePage from "@/app/(auth)/profile/[[...user-profile]]/page";
+import ProfilePage from "@/app/(root)/profile/[[...user-profile]]/page";
 
 function Profile() {
   return (

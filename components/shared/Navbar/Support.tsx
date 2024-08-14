@@ -1,5 +1,5 @@
 import React from "react";
-import SupportPage from "@/app/(auth)/support/[[...support]]/page";
+import SupportPage from "@/app/(root)/support/[[...support]]/page";
 function Support() {
   return (
     <div>
