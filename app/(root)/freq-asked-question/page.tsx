@@ -1,7 +1,7 @@
 import React from "react";
 
 function page() {
-  return <div>Currency page</div>;
+  return <div>Frequently Asked Question page</div>;
 }
 
 export default page;

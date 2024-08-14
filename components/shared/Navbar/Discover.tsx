@@ -5,8 +5,8 @@ import Tweet from "./Tweet";
 function Discover() {
   return (
     <section className="">
-      <div className="text-dark100_light900 background-light850_dark100 flex justify-center py-10 sm:gap-44 sm:flex-wrap lg:flex-nowrap lg:gap-[8rem] lg:w-[80rem] lg:ms-[17rem]">
-        <div className="sm:w-[650px] lg:w-[24rem]">
+      <div className="text-dark100_light900 background-light850_dark100 flex justify-center py-10 sm:flex-wrap sm:gap-44 lg:ms-[17rem] lg:w-[80rem] lg:flex-nowrap lg:gap-32">
+        <div className="sm:w-[650px] lg:w-96">
           <h1 className="text-xl">Discover FeeTrx Energy Market!</h1>
           <br />
           <p>

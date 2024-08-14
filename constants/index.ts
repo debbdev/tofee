@@ -35,8 +35,8 @@ export const sidebarLinks: SidebarLink[] = [
   },
   {
     imgURL: "/assets/icons/tag.svg",
-    route: "/latest-transaction",
-    label: "Latest transaction",
+    route: "/support",
+    label: "Support",
   },
   {
     imgURL: "/assets/icons/user.svg",

@@ -18,14 +18,14 @@ function EnergyMine() {
 
   // Conversion rate
   const conversionRate = 0.1284;
-  // const difference = 0.1;
+  const difference = 0.1;
 
   // Update TRX when USDT changes
   const handleUsdtChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const usdtValue = parseFloat(e.target.value);
     setUSDT(e.target.value);
     if (!isNaN(usdtValue)) {
-      setTRX((usdtValue / conversionRate).toFixed(2));
+      setTRX((usdtValue / conversionRate - difference).toFixed(2));
     } else {
       setTRX("");
     }
