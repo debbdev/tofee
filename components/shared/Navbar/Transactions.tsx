@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import {
   ColumnDef,
@@ -15,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 interface TransactionsProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -29,36 +29,32 @@ function Transactions<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
   return (
-    <section className="light-border custom-scrollbar sticky left-0  top-0 flex flex-col justify-around overflow-x-auto border-l border-none p-6 pt-36  shadow-light-300 dark:shadow-none max-sm:hidden sm:w-[850px] lg:w-[880px]">
-      <div className="text-dark100_light900 background-light900_dark200 rounded-md border sm:ms-10">
+    <section className="light-border custom-scrollbar overflow-x-auto border-l border-none shadow-light-300 px-8 dark:shadow-none max-sm:w-[640px] sm:w-80 lg:p-0 lg:w-1/2 sm:px-8 lg:pt-[7.5rem] sm:pt-0">
+      <div className="text-dark100_light900 background-light900_dark200 rounded-md border">
         <h1 className="text-center">ORDERS</h1>
         <Table>
           <TableHeader>
-            {table?.getHeaderGroups().map((headerGroup) => (
+            {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {cell.id === row.getValue("fullfilled") ? (
@@ -85,9 +81,6 @@ function Transactions<TData, TValue>({
                 </TableCell>
               </TableRow>
             )}
-            {/* <TableRow>
-              <Button variant={"outline"}>sell</Button>
-            </TableRow> */}
           </TableBody>
         </Table>
       </div>

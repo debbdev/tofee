@@ -7,11 +7,12 @@ import {
 import { logo } from "@/constants";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+
 function Footer() {
   return (
-    <section className="">
-      <div className="text-dark100_light900 background-light850_dark100">
-        <h1 className="ms-72 text-2xl">Trusted partners</h1>
+    <section className="text-dark100_light900 background-light850_dark100">
+      <div className="px-6 text-left md:px-12 lg:px-72">
+        <h1 className="text-2xl">Trusted partners</h1>
       </div>
       <div className="py-20">
         <Carousel
@@ -26,13 +27,13 @@ function Footer() {
               stopOnInteraction: true,
             }),
           ]}
-          className="me-72 ms-72 items-center justify-center"
+          className="mx-auto max-w-full px-6 md:px-12 lg:px-0"
         >
-          <CarouselContent className="">
+          <CarouselContent className="flex gap-4 lg:gap-8">
             {logo.map((item) => (
               <CarouselItem
                 key={item.label}
-                className="md:basis-1/2 lg:basis-1/5"
+                className="shrink-0 basis-1/3 md:basis-1/4 lg:basis-1/5"
               >
                 <Image src={item.imgURL} width={100} height={50} alt="logos" />
               </CarouselItem>
