@@ -19,6 +19,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 function BuyEnergy() {
   const [transfer, setTransfer] = useState<number | string>("");
   const [selectMode, setSelectMode] = useState<number | null>(null);
+  // eslint-disable-next-line tailwindcss/no-custom-classname
   const [currency, setCurrency] = useState<"TRX" | "USDT">("TRX");
   const flashSaleDiscount = 1; // 1% discount
   const [result, setResult] = useState<string | null>(null);
