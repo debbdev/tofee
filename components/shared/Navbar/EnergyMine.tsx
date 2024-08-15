@@ -64,19 +64,19 @@ function EnergyMine() {
   };
 
   return (
-    <section className="bg-lime-400 py-10 shadow-light-300 dark:shadow-none">
+    <section className="bg-amber-300/70 bg-background-mine bg-cover bg-center bg-no-repeat py-10 bg-blend-overlay shadow-light-300 dark:shadow-none">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:gap-16 lg:w-[84rem] mx-auto">
-          <div className="mb-8 flex-1 lg:mb-0 p-3 sm:p-3 lg:p-0 ">
-            <Card className="text-dark100_light900 background-light900_dark200 p-6 sm:p-10 lg:p-14 lg:w-[50rem] h-full">
+        <div className="mx-auto flex flex-col lg:w-[84rem] lg:flex-row lg:justify-between lg:gap-16">
+          <div className="mb-8 flex-1 p-3 sm:p-3 lg:mb-0 lg:p-0 ">
+            <Card className="text-dark100_light900 nav-background h-full p-6 sm:p-10 lg:w-[50rem] lg:p-14">
               <CardContent className="flex flex-col lg:flex-row lg:gap-10">
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-1 flex-wrap justify-center gap-4 lg:h-[50px] lg:w-[300px]">
                   <Image
-                    src="/assets/icons/account.svg"
-                    width={150}
-                    height={150}
+                    src="/assets/images/coin1.png"
+                    width={300}
+                    height={100}
                     alt="coin"
-                    className="invert-colors"
+                    className="animate-spin-slow"
                   />
                 </div>
                 <div className="flex-1">
@@ -84,16 +84,16 @@ function EnergyMine() {
                     FEM: FeeTrx Energy Mine
                   </h1>
                   <div className="mt-2 flex items-center gap-4">
-                    <h2 className="text-xl">49.9% APY</h2>
+                    <h2 className="text-sm">49.9% APY</h2>
                     <Image
                       src="/assets/icons/account.svg"
-                      width={20}
-                      height={20}
+                      width={15}
+                      height={15}
                       alt="coin"
                       className="invert-colors"
                     />
                   </div>
-                  <p className="mt-4">
+                  <p className="mt-4 ">
                     The FeeTrx energy rental platform is an energy exchange
                     platform in wave field ecology. Our goal is to reduce the
                     TRX fee required for wave traders to consume energy. <br />
@@ -102,24 +102,30 @@ function EnergyMine() {
                     price. We provide you with a safer and more efficient energy
                     exchange service 24 hours a day.
                   </p>
-                  <h2 className="pt-5 text-xl font-semibold">Instructions</h2>
-                  <ul className="mt-3 list-disc pl-5">
-                    <li>Please use a decentralized wallet to rent energy.</li>
-                    <li>
-                      The system accountant calculates the total amount and
-                      amount. Support TRX or USDT payments.
-                    </li>
-                    <li>
-                      After payment, the platform will distribute the
-                      corresponding energy to your account.
-                    </li>
-                    <li>
-                      Advocate for on-demand leasing and use it again! Unlimited
-                      number of transactions per day!
-                    </li>
-                  </ul>
                 </div>
               </CardContent>
+              <h2 className="mx-auto pt-2 text-xl font-semibold max-sm:w-80 sm:px-8">
+                Instructions
+              </h2>
+              <div className="flex-start mx-auto flex-wrap max-sm:w-80 sm:gap-0 sm:px-12 lg:w-[50rem] lg:gap-6 lg:px-8">
+                <ul className=" mt-3 list-disc lg:w-[19rem] ">
+                  <li>Please use a decentralized wallet to rent energy.</li>
+                  <li>
+                    The system accountant calculates the total amount and
+                    amount. Support TRX or USDT payments.
+                  </li>
+                </ul>
+                <ul className=" mt-3 list-disc lg:w-[19rem]">
+                  <li>
+                    After payment, the platform will distribute the
+                    corresponding energy to your account.
+                  </li>
+                  <li>
+                    Advocate for on-demand leasing and use it again! Unlimited
+                    number of transactions per day!
+                  </li>
+                </ul>
+              </div>
               <CardFooter className="mt-6 flex justify-center">
                 <Button
                   variant={"outline"}
@@ -138,7 +144,7 @@ function EnergyMine() {
             </Card>
           </div>
           <div className="flex-1 p-3 sm:p-3 lg:p-0">
-            <Card className="text-dark100_light900 background-light900_dark200 mb-8 p-3 lg:w-[30rem]">
+            <Card className="text-dark100_light900 nav-background mb-8 p-3 lg:w-[30rem]">
               <CardContent>
                 <h2 className="py-4 text-xl">Next FEM & TRX rewards in:</h2>
                 <FlipCountdown
@@ -155,19 +161,19 @@ function EnergyMine() {
                 />
               </CardContent>
             </Card>
-            <Card className="text-dark100_light900 background-light900_dark200 p-6 lg:w-[30rem]">
+            <Card className="text-dark100_light900 nav-background p-6 lg:w-[30rem]">
               <CardContent>
                 <h5 className="mt-5 text-center text-xl">
                   Token Exchange (TRX/USDT)
                 </h5>
-                <h6 className="mb-4 mt-2 text-sm text-center active-theme">
+                <h6 className="active-theme mb-4 mt-2 text-center text-sm">
                   Exchange Quantity = (Received Quantity × Exchange Rate - Gas
                   fee)
                 </h6>
                 <form>
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
-                      <label htmlFor="usdt" className="text-sm text-center">
+                      <label htmlFor="usdt" className="text-center text-sm">
                         USDT
                       </label>
                       <input
@@ -177,7 +183,7 @@ function EnergyMine() {
                         value={usdt}
                         onChange={handleUsdtChange}
                       />
-                      <label htmlFor="trx" className="text-sm text-center">
+                      <label htmlFor="trx" className="text-center text-sm">
                         TRX
                       </label>
                       <input
@@ -223,7 +229,7 @@ function EnergyMine() {
                               />
                             </DialogTrigger>
                             {dialog.visible && (
-                              <DialogContent className="text-dark100_light900 background-light900_dark200">
+                              <DialogContent className="text-dark100_light900 nav-background">
                                 <span className="ml-2 text-green-700">
                                   {dialog.message}
                                 </span>

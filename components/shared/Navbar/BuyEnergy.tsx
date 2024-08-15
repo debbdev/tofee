@@ -93,7 +93,7 @@ function BuyEnergy() {
 
   return (
     <div className="custom-scrollbar  gap-5 p-8 max-sm:w-[640px] sm:w-80 lg:w-1/4 lg:p-4">
-      <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
+      <Card className="text-dark100_light900 nav-background mb-5 py-5">
         <CardContent className="flex flex-col gap-6">
           <div>
             <h6>
@@ -159,7 +159,7 @@ function BuyEnergy() {
           </form>
         </CardContent>
       </Card>
-      <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
+      <Card className="text-dark100_light900 nav-background mb-5 py-5">
         <CardContent className="flex flex-col gap-6">
           <div>
             <h6>
@@ -210,9 +210,9 @@ function BuyEnergy() {
               <span>{selectMode === 6 ? "TRX" : "USDT"}</span>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex-start flex gap-2">
             <span>Platform Billing Address</span>
-            <div className="flex items-center gap-2">
+            <span className="flex items-center gap-2">
               <Image
                 src="/assets/icons/qrcode1.svg"
                 width={20}
@@ -220,39 +220,37 @@ function BuyEnergy() {
                 alt="qrcode"
                 className="active-theme"
               />
-              <div className="text-dark100_light900 background-light900_dark200 mt-2 flex w-full items-center justify-between gap-2 rounded-md border px-1 py-3 text-center">
-                <input
-                  type="text"
-                  className="text-dark100_light900 background-light900_dark200 w-full"
-                  value="TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1"
-                  readOnly
-                />
-                <span
-                  onClick={() =>
-                    handleCopy("TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1")
-                  }
-                >
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Image
-                        src="/assets/icons/copy.svg"
-                        alt="copy"
-                        width={20}
-                        height={20}
-                        className={`active-theme cursor-pointer ${result ? "text-green-700" : ""}`}
-                      />
-                    </DialogTrigger>
-                    {dialog.visible && (
-                      <DialogContent className="text-dark100_light900 background-light900_dark200">
-                        <span className="ml-2 text-green-700">
-                          Wallet Address Successfully Copied!
-                        </span>
-                      </DialogContent>
-                    )}
-                  </Dialog>
-                </span>
-              </div>
-            </div>
+            </span>
+          </div>
+          <div className="text-dark100_light900 background-light900_dark200 mt-2 flex w-full items-center justify-between gap-2 rounded-md border px-1 py-3 text-center">
+            <input
+              type="text"
+              className="text-dark100_light900 background-light900_dark200 w-full"
+              value="TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1"
+              readOnly
+            />
+            <span
+              onClick={() => handleCopy("TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1")}
+            >
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Image
+                    src="/assets/icons/copy.svg"
+                    alt="copy"
+                    width={20}
+                    height={20}
+                    className={`active-theme cursor-pointer ${result ? "text-green-700" : ""}`}
+                  />
+                </DialogTrigger>
+                {dialog.visible && (
+                  <DialogContent className="text-dark100_light900 background-light900_dark200">
+                    <span className="ml-2 text-green-700">
+                      Wallet Address Successfully Copied!
+                    </span>
+                  </DialogContent>
+                )}
+              </Dialog>
+            </span>
           </div>
         </CardContent>
       </Card>

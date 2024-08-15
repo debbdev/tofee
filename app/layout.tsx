@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "FeeTrx Energy",
   description: "Buy Your Trx Energy",
   icons: {
-    icon: "assets/images/site-logo.svg",
+    icon: "assets/icons/coin.svg",
   },
 };
 

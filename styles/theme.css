@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer utilities {
+  .nav-background {
+    @apply bg-neutral-400 dark:bg-neutral-900;
+  }
   .background-light850_dark100 {
     @apply bg-light-850 dark:bg-dark-100;
   }

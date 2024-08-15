@@ -53,6 +53,9 @@ const config: Config = {
       backgroundImage: {
         "auth-dark": "url('/assets/images/auth-dark.png')",
         "auth-light": "url('/assets/images/auth-light.png')",
+        "background-image": "url('/assets/images/background.jpg')",
+        "background-mine": "url('/assets/images/bg4.png')",
+        "background-discover": "url('/assets/images/bg3.jpg')",
       },
       screens: {
         xs: "420px",
@@ -70,6 +73,8 @@ const config: Config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+
+        "spin-slow": "spin 30s linear infinite",
       },
     },
   },

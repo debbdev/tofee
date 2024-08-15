@@ -1,12 +1,13 @@
 import Link from "next/link";
 import React from "react";
 import Tweet from "./Tweet";
+import Footer from "./Footer";
 
 function Discover() {
   return (
-    <section className="px-4 py-8">
-      <div className=" text-dark100_light900 background-light850_dark100 flex-between flex-col sm:flex-row sm:flex-wrap sm:gap-8 lg:items-start lg:gap-10 lg:px-0 lg:py-16 lg:w-[84rem] mx-auto">
-        <div className="mb-8 sm:mb-0 max-sm:w-[24rem] sm:w-full lg:w-[25rem] sm:px-10">
+    <section className="nav-background bg-background-mine bg-cover bg-center bg-no-repeat px-4 py-8">
+      <div className=" flex-between mx-auto flex-col bg-transparent text-white sm:flex-row sm:flex-wrap sm:gap-8 lg:w-[84rem] lg:items-start lg:gap-10 lg:px-0 lg:py-16">
+        <div className="mb-8 max-sm:w-96 sm:mb-0 sm:w-full sm:px-10 lg:w-[25rem]">
           <h1 className="text-xl font-bold">Discover FeeTrx Energy Market!</h1>
           <p className="mt-4">
             The Tron energy rental platform is an energy exchange platform in
@@ -23,7 +24,7 @@ function Discover() {
             automated features.
           </p>
         </div>
-        <div className="mb-8 flex flex-col sm:mb-0 max-sm:w-[24rem] sm:w-[300px] lg:w-52 sm:px-10">
+        <div className="mb-8 flex flex-col max-sm:w-96 sm:mb-0 sm:w-[300px] sm:px-10 lg:w-52">
           <h1 className="text-xl font-bold">Links</h1>
           <Link href="/" className="mt-2 block">
             FAQ
@@ -38,7 +39,7 @@ function Discover() {
             Terms & conditions
           </Link>
         </div>
-        <div className="mb-8 flex flex-col sm:mb-0 max-sm:w-[24rem] sm:w-[300px] lg:w-52 sm:px-10">
+        <div className="mb-8 flex flex-col max-sm:w-96 sm:mb-0 sm:w-[300px] sm:px-10 lg:w-52">
           <h1 className="text-xl font-bold">Contact Us</h1>
 
           <Link href="/" className="mt-2 block">
@@ -51,10 +52,11 @@ function Discover() {
             Twitter
           </Link>
         </div>
-        <div className="max-sm:w-[24rem] sm:w-full lg:w-[25rem] sm:px-10">
+        <div className="max-sm:w-96 sm:w-full sm:px-10 lg:w-[25rem]">
           <Tweet />
         </div>
       </div>
+      <Footer />
     </section>
   );
 }
