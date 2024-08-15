@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="background-light850_dark100 relative ">
       <Navbar />
-      <div className="flex flex-wrap pt-20 lg:w-full lg:items-center lg:justify-center lg:pt-0 pb-14">
+      <div className="flex flex-wrap pb-14 pt-20 lg:w-full lg:items-center lg:justify-center lg:pt-0">
         <BuyEnergy />
         <Transactions columns={columns} data={transactions} />
       </div>
