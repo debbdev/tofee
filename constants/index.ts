@@ -1,17 +1,6 @@
-import {
-  SidebarLink,
-  Payment,
-  Logos,
-  EmbeddedTweet,
-  Transactions,
-} from "@/types";
+import { SidebarLink, Payment, Logos, Transactions } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const themes = [
-  { value: "light", label: "Light", icon: "/assets/icons/sun.svg" },
-  { value: "dark", label: "Dark", icon: "/assets/icons/moon.svg" },
-  { value: "system", label: "System", icon: "/assets/icons/computer.svg" },
-];
 export const sidebarLinks: SidebarLink[] = [
   {
     imgURL: "/assets/icons/home.svg",
@@ -132,36 +121,7 @@ export const payments: Payment[] = [
   },
   // ...
 ];
-// export const columns: ColumnDef<Payment>[] = [
-//   {
-//     accessorKey: "info",
-//     header: "Info",
-//   },
-//   {
-//     accessorKey: "date",
-//     header: "Date",
-//   },
-//   {
-//     accessorKey: "resource",
-//     header: "Resource",
-//   },
-//   {
-//     accessorKey: "price",
-//     header: "Price",
-//   },
-//   {
-//     accessorKey: "payout",
-//     header: "Payout",
-//   },
-//   {
-//     accessorKey: "fullfilled",
-//     header: "Fullfilled",
-//   },
-//   {
-//     accessorKey: "sell",
-//     header: "Status",
-//   },
-// ];
+
 export const logo: Logos[] = [
   {
     imgURL: "assets/icons/vechain.svg",
@@ -202,23 +162,6 @@ export const logo: Logos[] = [
     imgURL: "assets/icons/busd.svg",
     route: "/",
     label: "Busd",
-  },
-];
-export const embeddedTweet: EmbeddedTweet[] = [
-  {
-    url_id: "1366310778450702341",
-  },
-  {
-    url_id: "1630172663413977090",
-  },
-  {
-    url_id: "1366313947134050307",
-  },
-  {
-    url_id: "1366312381396246531",
-  },
-  {
-    url_id: "1366310778450702341",
   },
 ];
 export const transactions: Transactions[] = [
@@ -371,25 +314,3 @@ export const columns: ColumnDef<Transactions>[] = [
     header: "Status",
   },
 ];
-// export const embeddedTweet: EmbeddedTweet[] = [
-//   {
-//     url_id:
-//       "https://publish.twitter.com/oembed?url=https://x.com/chimhak/status/1366310778450702341",
-//   },
-//   {
-//     url_id:
-//       "https://publish.twitter.com/oembed?url=https://x.com/chimhak/status/1630172663413977090",
-//   },
-//   {
-//     url_id:
-//       "https://publish.twitter.com/oembed?url=https://x.com/chimhak/status/1366313947134050307",
-//   },
-//   {
-//     url_id:
-//       "https://publish.twitter.com/oembed?url=https://x.com/chimhak/status/1366312381396246531",
-//   },
-//   {
-//     url_id:
-//       "https://publish.twitter.com/oembed?url=https://x.com/chimhak/status/1366310778450702341",
-//   },
-// ];

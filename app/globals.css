@@ -44,6 +44,9 @@ body {
   .primary-gradient {
     background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
   }
+  .brand-gradient {
+    background: linear-gradient(129deg, #ff9d00e6 0%, #ecd17e 100%);
+  }
 
   .dark-gradient {
     background: linear-gradient(
@@ -66,6 +69,10 @@ body {
   filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(0deg)
     brightness(104%) contrast(106%) !important;
 }
+.brand-color {
+  filter: invert(75%) sepia(70%) saturate(3300%) hue-rotate(45deg)
+    brightness(150%) contrast(110%) !important;
+}
 
 .light-gradient {
   background: linear-gradient(
@@ -77,6 +84,12 @@ body {
 
 .primary-text-gradient {
   background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.primary-brand-gradient {
+  background: linear-gradient(129deg, #ff9d00e6 0%, #ecd17e 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

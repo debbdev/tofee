@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import BuyEnergy from "./BuyEnergy";
+import NavBuyEnergy from "./NavBuyEnergy";
 import CurrencyExchange from "./CurrencyExchange";
 import { Card, CardContent } from "@/components/ui/card";
 import FrequentlyAskedQuestion from "./FrequentlyAskedQuestion";
@@ -38,8 +38,8 @@ const NavContent = () => {
                   href={item.route}
                   className={`${
                     isActive
-                      ? "primary-gradient rounded-lg text-light-900"
-                      : "text-dark300_light900"
+                      ? "brand-gradient rounded-lg text-light-900"
+                      : "text-dark-300"
                   } flex items-center justify-start gap-4 bg-transparent p-4`}
                 >
                   <Image
@@ -59,7 +59,7 @@ const NavContent = () => {
                   case "/energy-exchange":
                     return (
                       <DialogContent className="text-dark100_light900 background-light900_dark200 flex flex-col items-center overflow-hidden pb-20 pr-64 pt-0">
-                        <BuyEnergy />
+                        <NavBuyEnergy />
                       </DialogContent>
                     );
                   case "/currency-exchange":
@@ -143,24 +143,24 @@ const MobileNav = () => {
           width={36}
           height={36}
           alt="Menu"
-          className="invert-colors"
+          className="text-dark100_light900"
         />
       </SheetTrigger>
 
       <SheetContent
         side="right"
-        className="background-light900_dark200 no-scrollbar overflow-y-auto border-none"
+        className="background-light900_dark200 text-dark100_light900 no-scrollbar overflow-y-auto border-none"
       >
         <Link href="/" className="flex items-center gap-1">
           <Image
-            src="/assets/images/site-logo.svg"
+            src="/assets/icons/coin.svg"
             width={23}
             height={23}
             alt="Tofee"
           />
 
           <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            FeeTrx <span className="text-primary-500">Energy</span>
+            FeeTrx <span className="text-amber-500">Energy</span>
           </p>
         </Link>
         <div className="no-scrollbar flex grow flex-col justify-between overflow-y-auto">
@@ -170,11 +170,11 @@ const MobileNav = () => {
         </div>
         <div>
           <SignedOut>
-            <div className="flex flex-col gap-3">
+            <div className=" flex flex-col gap-3 pt-4">
               <SheetClose asChild>
                 <Link href="/sign-in">
                   <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                    <span className="primary-text-gradient">Log In</span>
+                    <span className="primary-brand-gradient">Log In</span>
                   </Button>
                 </Link>
               </SheetClose>

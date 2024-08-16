@@ -92,8 +92,8 @@ function BuyEnergy() {
   };
 
   return (
-    <div className="custom-scrollbar  gap-5 p-8 max-sm:w-[640px] sm:w-80 lg:w-1/4 lg:p-4">
-      <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
+    <div className="custom-scrollbar mx-auto gap-5 p-6 max-sm:w-[26rem] sm:w-[26rem] lg:w-[28rem] lg:p-4">
+      <Card className="text-dark100_light900 background-light900_dark200 mb-8 w-full px-6 py-5">
         <CardContent className="flex flex-col gap-6">
           <div>
             <h6>
@@ -159,7 +159,7 @@ function BuyEnergy() {
           </form>
         </CardContent>
       </Card>
-      <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
+      <Card className="text-dark100_light900 background-light900_dark200 px-6 py-5">
         <CardContent className="flex flex-col gap-6">
           <div>
             <h6>

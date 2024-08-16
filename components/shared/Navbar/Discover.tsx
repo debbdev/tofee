@@ -1,12 +1,15 @@
 import Link from "next/link";
 import React from "react";
 import Tweet from "./Tweet";
-import Footer from "./Footer";
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
+import Contact from "./Contact";
+import FrequentlyAskedQuestion from "./FrequentlyAskedQuestion";
+import TermsAndConditions from "./TermsCondition";
 
 function Discover() {
   return (
-    <section className="nav-background bg-background-mine bg-cover bg-center bg-no-repeat px-4 py-8">
-      <div className=" flex-between mx-auto flex-col bg-transparent text-white sm:flex-row sm:flex-wrap sm:gap-8 lg:w-[84rem] lg:items-start lg:gap-10 lg:px-0 lg:py-16">
+    <section className="background-light900_dark200  px-4 py-8">
+      <div className=" flex-between text-dark100_light900 mx-auto flex-col sm:flex-row sm:flex-wrap sm:gap-8 lg:w-[84rem] lg:items-start lg:gap-10 lg:px-0 lg:py-16">
         <div className="mb-8 max-sm:w-96 sm:mb-0 sm:w-full sm:px-10 lg:w-[25rem]">
           <h1 className="text-xl font-bold">Discover FeeTrx Energy Market!</h1>
           <p className="mt-4">
@@ -26,37 +29,55 @@ function Discover() {
         </div>
         <div className="mb-8 flex flex-col max-sm:w-96 sm:mb-0 sm:w-[300px] sm:px-10 lg:w-52">
           <h1 className="text-xl font-bold">Links</h1>
-          <Link href="/" className="mt-2 block">
-            FAQ
-          </Link>
-          <Link href="/" className="mt-2 block">
-            Medium
-          </Link>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Link href="/freq-asked-question" className="mt-2 block">
+                FAQ
+              </Link>
+            </DialogTrigger>
+            <DialogContent className="text-dark100_light900 background-light900_dark200 items-center">
+              <FrequentlyAskedQuestion />
+            </DialogContent>
+          </Dialog>
+
           <Link href="/" className="mt-2 block">
             Blog
           </Link>
-          <Link href="/" className="mt-2 block">
-            Terms & conditions
-          </Link>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Link href="/terms-conditions" className="mt-2 block">
+                Terms & conditions
+              </Link>
+            </DialogTrigger>
+            <DialogContent className="text-dark100_light900 background-light900_dark200 items-center">
+              <TermsAndConditions />
+            </DialogContent>
+          </Dialog>
         </div>
         <div className="mb-8 flex flex-col max-sm:w-96 sm:mb-0 sm:w-[300px] sm:px-10 lg:w-52">
           <h1 className="text-xl font-bold">Contact Us</h1>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Link href="/contact" className="mt-2 block">
+                Email support
+              </Link>
+            </DialogTrigger>
+            <DialogContent className="text-dark100_light900 background-light900_dark200 items-center">
+              <Contact />
+            </DialogContent>
+          </Dialog>
 
-          <Link href="/" className="mt-2 block">
-            Email support
-          </Link>
-          <Link href="/" className="mt-2 block">
+          <Link href="https://t.me/FeeTrxOfficial" className="mt-2 block">
             Telegram support
           </Link>
-          <Link href="/" className="mt-2 block">
-            Twitter
+          <Link href="https://wa.me/243979788274" className="mt-2 block">
+            WhatsApp
           </Link>
         </div>
         <div className="max-sm:w-96 sm:w-full sm:px-10 lg:w-[25rem]">
           <Tweet />
         </div>
       </div>
-      <Footer />
     </section>
   );
 }

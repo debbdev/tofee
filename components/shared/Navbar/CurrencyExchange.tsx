@@ -65,7 +65,7 @@ function EnergyMine() {
         <Card className="text-dark100_light900 background-light900_dark200 h-full">
           <CardContent>
             <h5 className="mt-5 text-center">Token Exchange (TRX/USDT)</h5>
-            <h6 className="active-theme mt-0 py-2 text-sm">
+            <h6 className="brand-color mt-0 py-2 text-sm">
               Exchange Quantity = (Received Quantity × Exchange Rate - Gas fee)
             </h6>
             <div>
@@ -96,7 +96,7 @@ function EnergyMine() {
                           width={20}
                           height={20}
                           alt="qrcode"
-                          className="active-theme pt-5"
+                          className="brand-color pt-5"
                         />
                       </span>
 
@@ -120,7 +120,7 @@ function EnergyMine() {
                                 alt="copy"
                                 width={20}
                                 height={20}
-                                className={`active-theme ${result ? "text-green-700" : ""}`}
+                                className={`brand-color ${result ? "text-green-700" : ""}`}
                               />
                             </DialogTrigger>
                             {dialog.visible && (
@@ -139,7 +139,7 @@ function EnergyMine() {
               </form>
             </div>
             <div>
-              <h6 className="active-theme pt-6">Amount</h6>
+              <h6 className="brand-color pt-6">Amount</h6>
               <p className="text-left lg:w-full">
                 Just transfer TRX or USDT token to the platform exchange
                 address, then the platform will automatically transfer the

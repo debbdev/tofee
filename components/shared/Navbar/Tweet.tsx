@@ -1,10 +1,10 @@
 // pages/tweet.tsx
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useTheme } from "@/context/ThemeProvider";
 
 export default function Tweet() {
-  const { mode } = useTheme();
+  // eslint-disable-next-line no-unused-vars
+  const [mode, setMode] = useState<"dark" | "light">("dark");
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://platform.twitter.com/widgets.js";
@@ -41,15 +41,6 @@ export default function Tweet() {
           Tweets by trondao
         </Link>
       )}
-      {/* <Link
-        // eslint-disable-next-line tailwindcss/no-custom-classname
-        className="twitter-timeline"
-        data-width="500"
-        data-height="700"
-        href="https://twitter.com/trondao?ref_src=twsrc%5Etfw"
-      >
-        Tweets by trondao
-      </Link> */}
     </div>
   );
 }

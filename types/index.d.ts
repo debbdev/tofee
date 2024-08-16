@@ -20,29 +20,6 @@ export interface Logos {
   label: string;
 }
 
-// export interface TwitterInfo {
-//   id: string;
-//   name: string;
-//   username: string;
-//   text: string;
-//   profileImageURL: string;
-//   description: string;
-// }
-export interface EmbeddedTweet {
-  url_id: string;
-}
-
-export interface TweetData {
-  id: string;
-  html: string;
-  author_name: string;
-  author_url: string;
-}
-export interface TwitterInfo {
-  name: string;
-  username: string;
-  text: string;
-}
 export interface Transactions {
   info: string;
   buyer: string;

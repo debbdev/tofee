@@ -10,7 +10,7 @@ import Autoplay from "embla-carousel-autoplay";
 
 function Footer() {
   return (
-    <section className=" bg-transparent text-white">
+    <section className="text-dark100_light900 background-light900_dark200">
       <div className="px-6 text-left md:px-12 lg:px-72">
         <h1 className="text-2xl">Trusted partners</h1>
       </div>
@@ -41,7 +41,7 @@ function Footer() {
           </CarouselContent>
         </Carousel>
       </div>
-      <div className="bg-transparent pb-5 text-center text-white">
+      <div className="text-dark100_light900 background-light900_dark200 pb-5 text-center">
         <p className="text-xs">© 2024 FeeTrx Energy Market.</p>
       </div>
     </section>

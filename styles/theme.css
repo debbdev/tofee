@@ -11,7 +11,7 @@
   }
 
   .background-light900_dark200 {
-    @apply bg-light-900 dark:bg-dark-200;
+    @apply bg-neutral-800;
   }
 
   .background-light900_dark300 {
@@ -43,7 +43,7 @@
   }
 
   .text-dark100_light900 {
-    @apply text-dark-100 dark:text-light-900 !important;
+    @apply text-light-900 !important;
   }
 
   .text-dark200_light900 {
@@ -196,6 +196,9 @@
 
   .primary-gradient {
     background: linear-gradient(129deg, #ff7000 0%, #e2995f 100%);
+  }
+  .brand-gradient {
+    background: linear-gradient(129deg, #ffbf00 0%, #b28d1e 100%);
   }
 
   .dark-gradient {

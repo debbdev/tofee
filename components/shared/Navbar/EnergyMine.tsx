@@ -3,11 +3,11 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import FlipCountdown from "@rumess/react-flip-countdown";
-import { useTheme } from "@/context/ThemeProvider";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 function EnergyMine() {
-  const { mode } = useTheme();
+  // eslint-disable-next-line no-unused-vars
+  const [mode, setMode] = useState<"dark" | "light">("dark");
   const [usdt, setUSDT] = useState<string>("");
   const [trx, setTRX] = useState<string>("");
   const [result, setResult] = useState<string | null>(null);
@@ -64,11 +64,11 @@ function EnergyMine() {
   };
 
   return (
-    <section className="bg-amber-300/70 bg-background-mine bg-cover bg-center bg-no-repeat py-10 bg-blend-overlay shadow-light-300 dark:shadow-none">
+    <section className="bg-amber-400 py-10 shadow-light-300 dark:shadow-none">
       <div className="container mx-auto px-4">
-        <div className="mx-auto flex flex-col lg:w-[84rem] lg:flex-row lg:justify-between lg:gap-16">
-          <div className="mb-8 flex-1 p-3 sm:p-3 lg:mb-0 lg:p-0 ">
-            <Card className="text-dark100_light900 nav-background h-full p-6 sm:p-10 lg:w-[50rem] lg:p-14">
+        <div className="mx-auto flex flex-col-reverse  lg:w-[84rem] lg:flex-row lg:justify-between lg:gap-16">
+          <div className="mb-8 flex-1 p-3 sm:order-2 sm:p-3 lg:order-1 lg:mb-0 lg:p-0">
+            <Card className="text-dark100_light900 background-light900_dark200 h-full p-6 sm:p-10 lg:w-[50rem] lg:p-14">
               <CardContent className="flex flex-col lg:flex-row lg:gap-10">
                 <div className="flex flex-1 flex-wrap justify-center gap-4 lg:h-[50px] lg:w-[300px]">
                   <Image
@@ -90,7 +90,7 @@ function EnergyMine() {
                       width={15}
                       height={15}
                       alt="coin"
-                      className="invert-colors"
+                      className="brand-color"
                     />
                   </div>
                   <p className="mt-4 ">
@@ -104,7 +104,7 @@ function EnergyMine() {
                   </p>
                 </div>
               </CardContent>
-              <h2 className="mx-auto pt-2 text-xl font-semibold max-sm:w-80 sm:px-8">
+              <h2 className="mx-auto pt-3 text-xl font-semibold max-sm:w-80 sm:px-8">
                 Instructions
               </h2>
               <div className="flex-start mx-auto flex-wrap max-sm:w-80 sm:gap-0 sm:px-12 lg:w-[50rem] lg:gap-6 lg:px-8">
@@ -137,14 +137,14 @@ function EnergyMine() {
                     width={23}
                     height={23}
                     alt="coin"
-                    className="invert-colors"
+                    className="brand-color"
                   />
                 </Button>
               </CardFooter>
             </Card>
           </div>
-          <div className="flex-1 p-3 sm:p-3 lg:p-0">
-            <Card className="text-dark100_light900 nav-background mb-8 p-3 lg:w-[30rem]">
+          <div className="flex flex-col-reverse p-3 sm:order-1 sm:p-3 lg:order-2 lg:p-0">
+            <Card className="text-dark100_light900 background-light900_dark200 mb-8 p-3 sm:order-2 lg:w-[30rem]">
               <CardContent>
                 <h2 className="py-4 text-xl">Next FEM & TRX rewards in:</h2>
                 <FlipCountdown
@@ -161,12 +161,12 @@ function EnergyMine() {
                 />
               </CardContent>
             </Card>
-            <Card className="text-dark100_light900 nav-background p-6 lg:w-[30rem]">
+            <Card className="text-dark100_light900 background-light900_dark200 p-6 sm:order-1 lg:w-[30rem]">
               <CardContent>
                 <h5 className="mt-5 text-center text-xl">
                   Token Exchange (TRX/USDT)
                 </h5>
-                <h6 className="active-theme mb-4 mt-2 text-center text-sm">
+                <h6 className="brand-color mb-4 mt-2 text-center text-sm">
                   Exchange Quantity = (Received Quantity × Exchange Rate - Gas
                   fee)
                 </h6>
@@ -179,7 +179,7 @@ function EnergyMine() {
                       <input
                         type="text"
                         id="usdt"
-                        className="w-full rounded-md border px-3 py-2 text-center"
+                        className="background-light900_dark200 w-full rounded-md border px-3 py-2 text-center"
                         value={usdt}
                         onChange={handleUsdtChange}
                       />
@@ -189,7 +189,7 @@ function EnergyMine() {
                       <input
                         type="text"
                         id="trx"
-                        className="w-full rounded-md border px-3 py-2 text-center"
+                        className="background-light900_dark200 w-full rounded-md border px-3 py-2 text-center"
                         value={trx}
                         onChange={handleTrxChange}
                       />
@@ -202,7 +202,7 @@ function EnergyMine() {
                           width={20}
                           height={20}
                           alt="qrcode"
-                          className="active-theme"
+                          className="brand-color"
                         />
                       </div>
                       <div className="mt-2 flex items-center gap-2 rounded-md border px-2 py-1">
@@ -225,11 +225,11 @@ function EnergyMine() {
                                 alt="copy"
                                 width={20}
                                 height={20}
-                                className={`cursor-pointer ${result ? "text-green-700" : " active-theme"}`}
+                                className={`cursor-pointer ${result ? "text-green-700" : "brand-color"}`}
                               />
                             </DialogTrigger>
                             {dialog.visible && (
-                              <DialogContent className="text-dark100_light900 nav-background">
+                              <DialogContent className="text-dark100_light900 background-light900_dark200">
                                 <span className="ml-2 text-green-700">
                                   {dialog.message}
                                 </span>
@@ -241,7 +241,7 @@ function EnergyMine() {
                     </div>
                   </div>
                 </form>
-                <h6 className="pt-3 text-base text-orange-500">Amount</h6>
+                <h6 className="brand-color pt-3 text-base">Amount</h6>
                 <p className="text-left text-sm">
                   Just transfer TRX or USDT token to the platform exchange
                   address, then the platform will automatically transfer the
