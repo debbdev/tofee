@@ -15,8 +15,10 @@ import {
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useQRCode } from "next-qrcode";
 
 function BuyEnergy() {
+  const { SVG } = useQRCode();
   const [transfer, setTransfer] = useState<number | string>("");
   const [selectMode, setSelectMode] = useState<number | null>(null);
   // eslint-disable-next-line tailwindcss/no-custom-classname, no-unused-vars
@@ -213,13 +215,30 @@ function BuyEnergy() {
           <div className="flex-start flex gap-2">
             <span>Platform Billing Address</span>
             <span className="flex items-center gap-2">
-              <Image
-                src="/assets/icons/qrcode1.svg"
-                width={20}
-                height={20}
-                alt="qrcode"
-                className="brand-color"
-              />
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Image
+                    src="/assets/icons/qrcode1.svg"
+                    width={20}
+                    height={20}
+                    alt="qrcode"
+                    className="brand-color cursor-pointer"
+                  />
+                </DialogTrigger>
+                <DialogContent className="text-dark100_light900 background-light900_dark200 flex items-center justify-center">
+                  <SVG
+                    text={"TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1"}
+                    options={{
+                      margin: 2,
+                      width: 200,
+                      color: {
+                        dark: "#010599FF",
+                        light: "#FFBF60FF",
+                      },
+                    }}
+                  />
+                </DialogContent>
+              </Dialog>
             </span>
           </div>
           <div className="text-dark100_light900 background-light900_dark200 mt-2 flex w-full items-center justify-between gap-2 rounded-md border px-1 py-3 text-center">

@@ -11,7 +11,7 @@ import Autoplay from "embla-carousel-autoplay";
 function Footer() {
   return (
     <section className="text-dark100_light900 background-light900_dark200">
-      <div className="px-6 text-left md:px-12 lg:px-72">
+      <div className="px-6 text-left md:px-12 lg:px-64">
         <h1 className="text-2xl">Trusted partners</h1>
       </div>
       <div className="py-20">
@@ -27,9 +27,9 @@ function Footer() {
               stopOnInteraction: true,
             }),
           ]}
-          className="mx-auto max-w-full px-6 md:px-12 lg:px-0"
+          className="mx-auto max-w-[84rem] px-6 md:px-12 lg:px-0"
         >
-          <CarouselContent className="flex gap-4 lg:gap-8">
+          <CarouselContent className="flex gap-4 lg:gap-5">
             {logo.map((item) => (
               <CarouselItem
                 key={item.label}
@@ -41,8 +41,8 @@ function Footer() {
           </CarouselContent>
         </Carousel>
       </div>
-      <div className="text-dark100_light900 background-light900_dark200 pb-5 text-center">
-        <p className="text-xs">© 2024 FeeTrx Energy Market.</p>
+      <div className="text-dark100_light900 background-light900_dark200 text-center">
+        <p className="pb-5 text-xs">© 2024 FeeTrx Energy Market.</p>
       </div>
     </section>
   );

@@ -39,7 +39,7 @@ const NavContent = () => {
                   className={`${
                     isActive
                       ? "brand-gradient rounded-lg text-light-900"
-                      : "text-dark-300"
+                      : "text-neutral-500"
                   } flex items-center justify-start gap-4 bg-transparent p-4`}
                 >
                   <Image
@@ -47,7 +47,7 @@ const NavContent = () => {
                     alt={item.label}
                     width={20}
                     height={20}
-                    className={`${isActive ? "" : "invert-colors"}`}
+                    className={`${isActive ? "" : "brand-color"}`}
                   />
                   <p className={`${isActive ? "base-bold" : "base-medium"}`}>
                     {item.label}

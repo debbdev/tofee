@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useQRCode } from "next-qrcode";
 
 function EnergyMine() {
+  const { SVG } = useQRCode();
   const [usdt, setUSDT] = useState<string>("");
   const [trx, setTRX] = useState<string>("");
   const [result, setResult] = useState<string | null>(null);
@@ -91,13 +93,30 @@ function EnergyMine() {
                     <div className="flex-start w-full flex-wrap gap-2">
                       <span className="pt-5">Platform Billing Address</span>
                       <span>
-                        <Image
-                          src="/assets/icons/qrcode1.svg"
-                          width={20}
-                          height={20}
-                          alt="qrcode"
-                          className="brand-color pt-5"
-                        />
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Image
+                              src="/assets/icons/qrcode1.svg"
+                              width={20}
+                              height={20}
+                              alt="qrcode"
+                              className="brand-color cursor-pointer pt-5"
+                            />
+                          </DialogTrigger>
+                          <DialogContent className="text-dark100_light900 background-light900_dark200 flex items-center justify-center">
+                            <SVG
+                              text={"TKJVEqQJ4xkfkrg8HA6AozDT27RS9gDLw1"}
+                              options={{
+                                margin: 2,
+                                width: 200,
+                                color: {
+                                  dark: "#010599FF",
+                                  light: "#FFBF60FF",
+                                },
+                              }}
+                            />
+                          </DialogContent>
+                        </Dialog>
                       </span>
 
                       <div className="flex-between text-dark100_light900 background-light900_dark200 mt-2 w-full gap-2 rounded-md border px-1 py-3 text-center">

@@ -4,8 +4,9 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import FlipCountdown from "@rumess/react-flip-countdown";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-
+import { useQRCode } from "next-qrcode";
 function EnergyMine() {
+  const { SVG } = useQRCode();
   // eslint-disable-next-line no-unused-vars
   const [mode, setMode] = useState<"dark" | "light">("dark");
   const [usdt, setUSDT] = useState<string>("");
@@ -197,13 +198,30 @@ function EnergyMine() {
                         <span className="text-sm">
                           Platform Billing Address
                         </span>
-                        <Image
-                          src="/assets/icons/qrcode1.svg"
-                          width={20}
-                          height={20}
-                          alt="qrcode"
-                          className="brand-color"
-                        />
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Image
+                              src="/assets/icons/qrcode1.svg"
+                              width={20}
+                              height={20}
+                              alt="qrcode"
+                              className="brand-color cursor-pointer"
+                            />
+                          </DialogTrigger>
+                          <DialogContent className="text-dark100_light900 background-light900_dark200 flex items-center justify-center">
+                            <SVG
+                              text={"THH8j7n8kcq6DmdAkSrUhQzn63jPoTpsWw"}
+                              options={{
+                                margin: 2,
+                                width: 200,
+                                color: {
+                                  dark: "#010599FF",
+                                  light: "#FFBF60FF",
+                                },
+                              }}
+                            />
+                          </DialogContent>
+                        </Dialog>
                       </div>
                       <div className="mt-2 flex items-center gap-2 rounded-md border px-2 py-1">
                         <input
