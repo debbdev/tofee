@@ -10,9 +10,9 @@ import Autoplay from "embla-carousel-autoplay";
 
 function Footer() {
   return (
-    <section className="text-dark100_light900 background-light900_dark200">
-      <div className="px-6 text-left md:px-12 lg:px-64">
-        <h1 className="text-2xl">Trusted partners</h1>
+    <section className="text-dark100_light900 background-light900_dark200 w-full">
+      <div className="px-6 text-left sm:px-10 md:px-12 lg:px-64">
+        <h1 className="text-xl font-bold">Trusted partners</h1>
       </div>
       <div className="py-20">
         <Carousel

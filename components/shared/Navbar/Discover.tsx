@@ -8,9 +8,9 @@ import TermsAndConditions from "./TermsCondition";
 
 function Discover() {
   return (
-    <section className="background-light900_dark200  px-4 py-8">
+    <section className="background-light900_dark200  w-full px-4 py-8">
       <div className=" flex-between text-dark100_light900 mx-auto flex-col sm:flex-row sm:flex-wrap sm:gap-8 lg:w-[84rem] lg:items-start lg:gap-10 lg:px-0 lg:py-16">
-        <div className="mb-8 max-sm:w-96 sm:mb-0 sm:w-full sm:px-10 lg:w-[25rem]">
+        <div className="mb-8 max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-[25rem]">
           <h1 className="text-xl font-bold">Discover FeeTrx Energy Market!</h1>
           <p className="mt-4">
             The Tron energy rental platform is an energy exchange platform in
@@ -27,8 +27,8 @@ function Discover() {
             automated features.
           </p>
         </div>
-        <div className="mb-8 flex flex-col max-sm:w-96 sm:mb-0 sm:w-[300px] sm:px-10 lg:w-52">
-          <h1 className="text-xl font-bold">Links</h1>
+        <div className="mb-8 flex flex-col max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-52">
+          <h1 className=" text-xl font-bold">Links</h1>
           <Dialog>
             <DialogTrigger asChild>
               <Link href="/freq-asked-question" className="mt-2 block">
@@ -54,8 +54,8 @@ function Discover() {
             </DialogContent>
           </Dialog>
         </div>
-        <div className="mb-8 flex flex-col max-sm:w-96 sm:mb-0 sm:w-[300px] sm:px-10 lg:w-52">
-          <h1 className="text-xl font-bold">Contact Us</h1>
+        <div className="mb-8 flex flex-col  max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-52">
+          <h1 className="sm:h2-bold text-xl font-bold">Contact Us</h1>
           <Dialog>
             <DialogTrigger asChild>
               <Link href="/contact" className="mt-2 block">
@@ -74,9 +74,8 @@ function Discover() {
             WhatsApp
           </Link>
         </div>
-        <div className="max-sm:w-96 sm:w-full sm:px-10 lg:w-[25rem]">
-          <Tweet />
-        </div>
+
+        <Tweet />
       </div>
     </section>
   );

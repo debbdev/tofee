@@ -55,14 +55,14 @@ function BuyEnergy() {
 
   // Calculate savings based on transfer, selectMode, and currency
   const calculateSavings = useMemo(() => {
-    if (transfer && selectMode === 6) {
+    if (transfer && selectMode === 8) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
       const referenceValue = 13.5366 * transferValue;
       const calculatedSavings =
         (referenceValue - calcResult) * flashSaleDiscount;
       return calculatedSavings.toFixed(2);
-    } else if (transfer && selectMode === 0.7) {
+    } else if (transfer && selectMode === 1.1) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
       const referenceValue = 1.72 * transferValue;
@@ -94,7 +94,7 @@ function BuyEnergy() {
   };
 
   return (
-    <div className="custom-scrollbar  gap-5 p-8 max-sm:w-[640px] sm:w-80 lg:w-1/4 lg:p-4">
+    <div className="custom-scrollbar p-8 max-sm:w-[640px] sm:w-full lg:w-[35rem] lg:p-0 lg:pt-32">
       <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
         <CardContent className="flex flex-col gap-6">
           <div>
@@ -144,11 +144,11 @@ function BuyEnergy() {
                       position="popper"
                       className="text-dark100_light900 background-light900_dark200"
                     >
-                      <SelectItem id="mySelect" value="6">
-                        6 TRX/1 Hour
+                      <SelectItem id="mySelect" value="8">
+                        8 TRX/1 Hour
                       </SelectItem>
-                      <SelectItem id="mySelect" value="0.7">
-                        0.7 USDT/Unlimited
+                      <SelectItem id="mySelect" value="1.1">
+                        1.1 USDT/Unlimited
                       </SelectItem>
                     </SelectContent>
                   </Select>

@@ -5,7 +5,6 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Progress } from "@/components/ui/progress";
 import {
   Table,
   TableBody,
@@ -14,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Progress } from "./Progress";
 
 interface TransactionsProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -31,8 +31,8 @@ function Transactions<TData, TValue>({
   });
 
   return (
-    <section className="light-border custom-scrollbar overflow-x-auto border-none px-8 shadow-none max-sm:w-[640px] sm:w-80 sm:px-8 sm:pt-0 lg:w-1/2 lg:p-0 lg:pt-[7.5rem]">
-      <div className="text-dark100_light900 background-light900_dark200 rounded-md border">
+    <section className="background-light900_dark200 light-border custom-scrollbar w-full overflow-x-auto border-none px-8 py-5 shadow-none sm:w-full sm:px-8 sm:pb-20 sm:pt-0 lg:w-full lg:px-0 lg:pb-16 lg:pt-5">
+      <div className="text-dark100_light900 background-light900_dark200 mx-auto rounded-md border max-sm:w-[640px] sm:w-full lg:w-[84rem]">
         <h1 className="pt-4 text-center">ORDERS</h1>
         <Table>
           <TableHeader>
@@ -57,10 +57,8 @@ function Transactions<TData, TValue>({
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {cell.id === row.getValue("fullfilled") ? (
-                        <Progress value={row.getValue("fullfilled")}>
-                          %
-                        </Progress>
+                      {cell.column.id === "status" ? (
+                        <Progress value={row.getValue("status") as number} />
                       ) : (
                         flexRender(
                           cell.column.columnDef.cell,

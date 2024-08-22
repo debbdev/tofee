@@ -12,8 +12,8 @@ export default function Navbar() {
   const { user } = useUser();
 
   return (
-    <nav className="background-light900_dark200 text-dark100_light900 fixed z-50 w-full p-4 shadow-light-300 dark:shadow-none">
-      <div className="flex-between container mx-auto lg:w-[84rem]">
+    <nav className="background-light900_dark200 text-dark100_light900 fixed z-50 w-full py-4 shadow-light-300 dark:shadow-none">
+      <div className="flex-between container mx-auto lg:w-[90rem]">
         {/* Logo and Title */}
         <Link href="/" className="flex items-center gap-1">
           <Image
@@ -23,7 +23,7 @@ export default function Navbar() {
             alt="FeeTrx"
             className=""
           />
-          <p className="lg:h2-bold  text-dark100_light900 font-spaceGrotesk sm:text-2xl">
+          <p className="lg:h2-bold  text-dark100_light900 sm:h1-bold font-spaceGrotesk">
             FeeTrx <span className="brand-color sm:text-2xl">Energy</span>
           </p>
         </Link>

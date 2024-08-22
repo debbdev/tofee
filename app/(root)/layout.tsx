@@ -7,16 +7,17 @@ import { columns, transactions } from "@/constants";
 import EnergyMine from "@/components/shared/Navbar/EnergyMine";
 import Discover from "@/components/shared/Navbar/Discover";
 import Footer from "@/components/shared/Navbar/Footer";
+import YouTubeVideo from "@/components/shared/Navbar/Youtube";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="background-light850_dark100 relative ">
       <Navbar />
-      <div className="background-light900_dark200 flex flex-wrap pb-14 pt-20 lg:w-full lg:items-center lg:justify-center lg:pt-0">
+      <div className="background-light900_dark200 flex-center flex-wrap gap-5 pb-5 pt-24 lg:w-full lg:gap-56 lg:pt-0">
+        <YouTubeVideo />
         <BuyEnergy />
-        <Transactions columns={columns} data={transactions} />
       </div>
-
+      <Transactions columns={columns} data={transactions} />
       <EnergyMine />
       <Discover />
       <Footer />
