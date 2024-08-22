@@ -40,7 +40,6 @@ function EnergyMine() {
     }
   };
 
-  // Copy function
   const handleCopy = (text: string) => {
     navigator.clipboard
       .writeText(text)

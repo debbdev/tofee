@@ -38,7 +38,7 @@ const ContactPage: React.FC = () => {
         setSent(false);
       }, 3000); // Close the dialog after 3 seconds
 
-      return () => clearTimeout(timer); // Clear the timeout if the component unmounts or re-renders
+      return () => clearTimeout(timer);
     }
   }, [sent]);
 

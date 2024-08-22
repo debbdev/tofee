@@ -43,7 +43,6 @@ function EnergyMine() {
     }
   };
 
-  // Copy function
   const handleCopy = (text: string) => {
     navigator.clipboard
       .writeText(text)
@@ -65,11 +64,11 @@ function EnergyMine() {
   };
 
   return (
-    <section className="bg-amber-400 py-10 shadow-light-300 dark:shadow-none">
+    <section className="w-full bg-amber-400 py-10 shadow-light-300 dark:shadow-none max-sm:w-96 sm:w-full">
       <div className="container mx-auto px-4">
-        <div className="mx-auto flex flex-col-reverse  lg:w-[84rem] lg:flex-row lg:justify-between lg:gap-16">
+        <div className="mx-auto flex flex-col-reverse  max-lg:w-[84rem] max-sm:w-80 sm:w-full lg:flex-row lg:justify-between lg:gap-16">
           <div className="mb-8 flex-1 p-3 sm:order-2 sm:p-3 lg:order-1 lg:mb-0 lg:p-0">
-            <Card className="text-dark100_light900 background-light900_dark200 h-full p-6 sm:p-10 lg:w-[50rem] lg:p-14">
+            <Card className="text-dark100_light900 background-light900_dark200 h-full p-6 sm:p-10 lg:w-[45rem] lg:p-14">
               <CardContent className="flex flex-col lg:flex-row lg:gap-10">
                 <div className="flex flex-1 flex-wrap justify-center gap-4 lg:h-[50px] lg:w-[300px]">
                   <Image
@@ -105,18 +104,18 @@ function EnergyMine() {
                   </p>
                 </div>
               </CardContent>
-              <h2 className="mx-auto pt-3 text-xl font-semibold max-sm:w-80 sm:px-8">
+              <h2 className="mx-auto pt-3 text-xl font-semibold max-sm:w-40  sm:w-full sm:px-8">
                 Instructions
               </h2>
-              <div className="flex-start mx-auto flex-wrap max-sm:w-80 sm:gap-0 sm:px-12 lg:w-[50rem] lg:gap-6 lg:px-8">
-                <ul className=" mt-3 list-disc lg:w-[19rem] ">
+              <div className="flex-start mx-auto flex-wrap max-lg:w-[50rem] max-sm:w-80 sm:gap-0 sm:px-12 lg:w-[50rem] lg:gap-6 lg:px-8">
+                <ul className="mx-auto mt-3 list-disc max-lg:w-[19rem] max-sm:w-60 sm:mx-auto sm:w-full lg:mx-0 lg:w-64">
                   <li>Please use a decentralized wallet to rent energy.</li>
                   <li>
                     The system accountant calculates the total amount and
                     amount. Support TRX or USDT payments.
                   </li>
                 </ul>
-                <ul className=" mt-3 list-disc lg:w-[19rem]">
+                <ul className="mx-auto mt-3 list-disc max-lg:w-[19rem] max-sm:w-60 sm:mx-auto sm:w-full lg:mx-0 lg:w-64 ">
                   <li>
                     After payment, the platform will distribute the
                     corresponding energy to your account.
@@ -144,8 +143,8 @@ function EnergyMine() {
               </CardFooter>
             </Card>
           </div>
-          <div className="flex flex-col-reverse p-3 sm:order-1 sm:p-3 lg:order-2 lg:p-0">
-            <Card className="text-dark100_light900 background-light900_dark200 mb-8 p-3 sm:order-2 lg:w-[30rem]">
+          <div className="flex flex-col-reverse p-3 max-lg:w-[30rem] max-sm:w-[22rem] sm:order-1 sm:w-full sm:p-3 lg:order-2 lg:w-[30rem] lg:p-0">
+            <Card className="text-dark100_light900 background-light900_dark200 mb-8 p-3 max-lg:w-[30rem] max-sm:w-80 sm:order-2 sm:w-full lg:w-[30rem]">
               <CardContent>
                 <h2 className="py-4 text-xl">Next FEM & TRX rewards in:</h2>
                 <FlipCountdown
@@ -162,7 +161,7 @@ function EnergyMine() {
                 />
               </CardContent>
             </Card>
-            <Card className="text-dark100_light900 background-light900_dark200 p-6 sm:order-1 lg:w-[30rem]">
+            <Card className="text-dark100_light900 background-light900_dark200 p-6 max-lg:w-[30rem] max-sm:w-80 sm:order-1 sm:w-full lg:w-[30rem]">
               <CardContent>
                 <h5 className="mt-5 text-center text-xl">
                   Token Exchange (TRX/USDT)

@@ -11,7 +11,7 @@ export default function YouTubeVideo() {
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerPolicy="strict-origin-when-cross-origin"
       allowFullScreen
-      className="px-8 sm:w-full sm:px-8 lg:w-[35rem] lg:px-0"
+      className=" px-8 sm:w-full sm:px-8 lg:w-[35rem] lg:px-0"
     ></iframe>
   );
 }

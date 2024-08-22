@@ -8,10 +8,10 @@ import TermsAndConditions from "./TermsCondition";
 
 function Discover() {
   return (
-    <section className="background-light900_dark200  w-full px-4 py-8">
-      <div className=" flex-between text-dark100_light900 mx-auto flex-col sm:flex-row sm:flex-wrap sm:gap-8 lg:w-[84rem] lg:items-start lg:gap-10 lg:px-0 lg:py-16">
-        <div className="mb-8 max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-[25rem]">
-          <h1 className="text-xl font-bold">Discover FeeTrx Energy Market!</h1>
+    <section className="background-light900_dark200  w-full px-4 py-8 max-sm:w-96 sm:w-full">
+      <div className=" flex-between text-dark100_light900 mx-auto flex-col max-lg:w-[84rem] max-sm:w-80 sm:w-full sm:flex-row sm:flex-wrap sm:gap-8 lg:w-[84rem] lg:items-start lg:gap-10 lg:px-0 lg:py-16">
+        <div className="mb-8 max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-[30rem]">
+          <h1 className="text-2xl font-bold">Discover FeeTrx Energy Market!</h1>
           <p className="mt-4">
             The Tron energy rental platform is an energy exchange platform in
             wave field ecology. Our goal is to reduce the TRX fee required for
@@ -27,7 +27,7 @@ function Discover() {
             automated features.
           </p>
         </div>
-        <div className="mb-8 flex flex-col max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-52">
+        <div className="mb-8 flex flex-col max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-64">
           <h1 className=" text-xl font-bold">Links</h1>
           <Dialog>
             <DialogTrigger asChild>
@@ -53,9 +53,7 @@ function Discover() {
               <TermsAndConditions />
             </DialogContent>
           </Dialog>
-        </div>
-        <div className="mb-8 flex flex-col  max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-52">
-          <h1 className="sm:h2-bold text-xl font-bold">Contact Us</h1>
+
           <Dialog>
             <DialogTrigger asChild>
               <Link href="/contact" className="mt-2 block">

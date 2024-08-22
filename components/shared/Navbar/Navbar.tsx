@@ -12,9 +12,8 @@ export default function Navbar() {
   const { user } = useUser();
 
   return (
-    <nav className="background-light900_dark200 text-dark100_light900 fixed z-50 w-full py-4 shadow-light-300 dark:shadow-none">
-      <div className="flex-between container mx-auto lg:w-[90rem]">
-        {/* Logo and Title */}
+    <nav className="background-light900_dark200 text-dark100_light900 fixed z-50 w-full py-4 shadow-light-300 dark:shadow-none max-sm:w-96 sm:w-full">
+      <div className="flex-between container mx-auto lg:w-[84rem]">
         <Link href="/" className="flex items-center gap-1">
           <Image
             src="/assets/icons/coin.svg"
@@ -23,12 +22,12 @@ export default function Navbar() {
             alt="FeeTrx"
             className=""
           />
-          <p className="lg:h2-bold  text-dark100_light900 sm:h1-bold font-spaceGrotesk">
-            FeeTrx <span className="brand-color sm:text-2xl">Energy</span>
+          <p className="lg:h2-bold text-dark100_light900 font-spaceGrotesk sm:text-xl">
+            FeeTrx
+            <span className="brand-color lg:h2-bold sm:text-xl">Energy</span>
           </p>
         </Link>
 
-        {/* Navbar Content */}
         <div className="flex items-center gap-9 sm:gap-5">
           {/* <div className="hidden sm:block">
             <Theme />
