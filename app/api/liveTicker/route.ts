@@ -1,26 +1,32 @@
 import { NextResponse } from "next/server";
+import axios from "axios";
 
 export async function GET() {
   const liveKey = process.env.NEXT_PUBLIC_COIN_API_KEY;
   const url =
-    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
+    "https://pro-api.coinmarketcap.com/v1/exchange/quotes/historical?id=1937";
 
   try {
-    const response = await fetch(url, {
-      method: "GET",
+    const response = await axios.get(url, {
       headers: {
         "X-CMC_PRO_API_KEY": liveKey as string,
       },
     });
+    console.log(liveKey);
 
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
+    const data = response.data;
+
+    if (!data) {
+      throw new Error("No data received");
     }
 
-    const data = await response.json();
+    console.log(data);
     return NextResponse.json(data);
   } catch (error) {
-    console.error("Error fetching crypto data:", error);
+    console.error(
+      "Error fetching crypto data:",
+      (error as Error).message || error
+    );
     return NextResponse.json(
       { error: "Failed to fetch data" },
       { status: 500 }

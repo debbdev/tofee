@@ -28,7 +28,8 @@
     ".next/types/**/*.ts",
     "app/services/twitter.ts",
     "components/shared/Navbar/Twitter.js",
-    "app/services/twitter.ts"
+    "app/services/twitter.ts",
+    "app/api/liveTicker"
   ],
   "exclude": ["node_modules"]
 }
