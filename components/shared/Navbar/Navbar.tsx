@@ -12,8 +12,8 @@ export default function Navbar() {
   const { user } = useUser();
 
   return (
-    <nav className="background-light900_dark200 text-dark100_light900 fixed z-50 w-full py-4 shadow-light-300 dark:shadow-none sm:w-full">
-      <div className="flex-between container mx-auto sm:w-full lg:w-[84rem]">
+    <nav className="background-light900_dark200 text-dark100_light900 fixed z-50 w-screen py-4 shadow-light-300 dark:shadow-none">
+      <div className="flex-between container mx-auto max-w-screen-sm sm:max-w-screen-sm lg:max-w-screen-xl">
         <Link href="/" className="flex items-center gap-1">
           <Image
             src="/assets/icons/coin.svg"

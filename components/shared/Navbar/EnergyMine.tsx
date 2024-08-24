@@ -64,7 +64,7 @@ function EnergyMine() {
   };
 
   return (
-    <section className="w-full bg-amber-400 py-10 shadow-light-300 dark:shadow-none sm:w-full">
+    <section className="w-full bg-amber-400 py-10 shadow-light-300 dark:shadow-none">
       <div className="container mx-auto px-4">
         <div className="mx-auto flex flex-col-reverse  max-lg:w-[84rem] max-sm:w-80 sm:w-full lg:flex-row lg:justify-between lg:gap-16">
           <div className="mx-auto mb-8 flex-1 sm:order-2 sm:p-3 lg:order-1 lg:mb-0 lg:p-0">

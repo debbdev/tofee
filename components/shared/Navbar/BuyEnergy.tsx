@@ -94,7 +94,7 @@ function BuyEnergy() {
   };
 
   return (
-    <div className="custom-scrollbar p-8 max-sm:w-96 sm:w-full lg:w-[35rem] lg:p-0 lg:pt-32">
+    <div className="custom-scrollbar p-8  sm:w-full lg:w-[35rem] lg:p-0 lg:pt-32">
       <Card className="text-dark100_light900 background-light900_dark200 mb-5 py-5">
         <CardContent className="flex flex-col gap-6">
           <div>
