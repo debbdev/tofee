@@ -64,11 +64,11 @@ function EnergyMine() {
   };
 
   return (
-    <section className="w-full bg-amber-400 py-10 shadow-light-300 dark:shadow-none max-sm:w-96 sm:w-full">
+    <section className="w-full bg-amber-400 py-10 shadow-light-300 dark:shadow-none sm:w-full">
       <div className="container mx-auto px-4">
         <div className="mx-auto flex flex-col-reverse  max-lg:w-[84rem] max-sm:w-80 sm:w-full lg:flex-row lg:justify-between lg:gap-16">
-          <div className="mb-8 flex-1 p-3 sm:order-2 sm:p-3 lg:order-1 lg:mb-0 lg:p-0">
-            <Card className="text-dark100_light900 background-light900_dark200 h-full p-6 sm:p-10 lg:w-[45rem] lg:p-14">
+          <div className="mx-auto mb-8 flex-1 sm:order-2 sm:p-3 lg:order-1 lg:mb-0 lg:p-0">
+            <Card className="text-dark100_light900 background-light900_dark200 h-full p-6 max-sm:w-80 sm:p-10 lg:w-[45rem] lg:p-14">
               <CardContent className="flex flex-col lg:flex-row lg:gap-10">
                 <div className="flex flex-1 flex-wrap justify-center gap-4 lg:h-[50px] lg:w-[300px]">
                   <Image
@@ -143,10 +143,11 @@ function EnergyMine() {
               </CardFooter>
             </Card>
           </div>
-          <div className="flex flex-col-reverse p-3 max-lg:w-[30rem] max-sm:w-[22rem] sm:order-1 sm:w-full sm:p-3 lg:order-2 lg:w-[30rem] lg:p-0">
+          <div className="mx-auto flex flex-col-reverse max-lg:w-[30rem] sm:order-1 sm:w-full sm:p-3 lg:order-2 lg:w-[30rem] lg:p-0">
             <Card className="text-dark100_light900 background-light900_dark200 mb-8 p-3 max-lg:w-[30rem] max-sm:w-80 sm:order-2 sm:w-full lg:w-[30rem]">
               <CardContent>
                 <h2 className="py-4 text-xl">Next FEM & TRX rewards in:</h2>
+
                 <FlipCountdown
                   hideYear
                   hideMonth

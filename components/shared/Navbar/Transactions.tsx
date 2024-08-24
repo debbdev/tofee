@@ -31,7 +31,7 @@ function Transactions<TData, TValue>({
   });
 
   return (
-    <section className="background-light900_dark200 light-border custom-scrollbar w-full overflow-x-auto border-none px-8 py-5 shadow-none max-sm:w-96 sm:w-full sm:px-8 sm:pb-20 sm:pt-0 lg:w-full lg:px-0 lg:pb-16 lg:pt-5">
+    <section className="background-light900_dark200 light-border custom-scrollbar w-full overflow-x-auto border-none px-8 py-5 shadow-none sm:w-full sm:px-8 sm:pb-20 sm:pt-0 lg:w-full lg:px-0 lg:pb-16 lg:pt-5">
       <div className="text-dark100_light900 background-light900_dark200 mx-auto rounded-md border max-sm:w-80 sm:w-full lg:w-[84rem]">
         <h1 className="pt-4 text-center">ORDERS</h1>
         <Table>

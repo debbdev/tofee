@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="background-light850_dark100 relative ">
       <Navbar />
-      <div className="background-light900_dark200 flex-center mx-auto  w-full flex-wrap gap-5 pb-5 pt-24 max-lg:gap-56 max-sm:w-96 max-sm:gap-5 sm:w-full sm:gap-5 lg:w-full lg:gap-20 lg:pt-0">
+      <div className="background-light900_dark200 flex-center mx-auto  w-full flex-wrap gap-5 pb-5 pt-24 max-lg:gap-56 max-sm:gap-5 sm:w-full sm:gap-5 lg:w-full lg:gap-20 lg:pt-0">
         <YouTubeVideo />
         <BuyEnergy />
       </div>

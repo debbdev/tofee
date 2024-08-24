@@ -8,7 +8,7 @@ import TermsAndConditions from "./TermsCondition";
 
 function Discover() {
   return (
-    <section className="background-light900_dark200  w-full px-4 py-8 max-sm:w-96 sm:w-full">
+    <section className="background-light900_dark200  w-full px-4 py-8 sm:w-full">
       <div className=" flex-between text-dark100_light900 mx-auto flex-col max-lg:w-[84rem] max-sm:w-80 sm:w-full sm:flex-row sm:flex-wrap sm:gap-8 lg:w-[84rem] lg:items-start lg:gap-10 lg:px-0 lg:py-16">
         <div className="mb-8 max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-[30rem]">
           <h1 className="text-2xl font-bold">Discover FeeTrx Energy Market!</h1>
