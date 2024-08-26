@@ -11,7 +11,7 @@ import Autoplay from "embla-carousel-autoplay";
 function Footer() {
   return (
     <section className="text-dark100_light900 background-light900_dark200 w-full sm:w-full">
-      <div className="container mx-auto max-sm:w-96 sm:w-full lg:w-[84rem]">
+      <div className="container mx-auto max-w-screen-sm max-sm:w-96 sm:w-full sm:max-w-screen-sm lg:w-[84rem] lg:max-w-screen-xl">
         <div className=" pl-2 text-left">
           <h1 className="pt-4 text-xl font-bold">Trusted partners</h1>
         </div>

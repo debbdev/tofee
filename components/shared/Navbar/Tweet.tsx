@@ -18,7 +18,7 @@ export default function Tweet() {
   }, []);
 
   return (
-    <div className="text-dark100_light900 background-light900_dark200 mx-auto px-8  max-sm:w-80 sm:w-full sm:px-8 lg:w-80 lg:px-0">
+    <div className="text-dark100_light900 background-light900_dark200 mx-auto px-0  max-sm:w-80 sm:w-full sm:px-0 lg:w-80 lg:px-0">
       {mode === "light" ? (
         <Link
           // eslint-disable-next-line tailwindcss/no-custom-classname
