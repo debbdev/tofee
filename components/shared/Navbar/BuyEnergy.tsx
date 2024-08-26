@@ -55,7 +55,7 @@ function BuyEnergy() {
 
   // Calculate savings based on transfer, selectMode, and currency
   const calculateSavings = useMemo(() => {
-    if (transfer && selectMode === 8) {
+    if (transfer && selectMode === 7) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
       const referenceValue = 13.5366 * transferValue;
@@ -144,8 +144,8 @@ function BuyEnergy() {
                       position="popper"
                       className="text-dark100_light900 background-light900_dark200"
                     >
-                      <SelectItem id="mySelect" value="8">
-                        8 TRX/1 Hour
+                      <SelectItem id="mySelect" value="7">
+                        7 TRX/1 Hour
                       </SelectItem>
                       <SelectItem id="mySelect" value="1.1">
                         1.1 USDT/Unlimited
@@ -179,7 +179,7 @@ function BuyEnergy() {
           <div className="flex w-full items-center justify-between">
             <div className="flex items-center gap-5">
               <span>{calculateResult}</span>
-              <span>{selectMode === 6 ? "TRX" : "USDT"}</span>
+              <span>{selectMode === 7 ? "TRX" : "USDT"}</span>
               <span onClick={() => handleCopy(calculateResult)}>
                 <Dialog>
                   <DialogTrigger asChild>
@@ -209,7 +209,7 @@ function BuyEnergy() {
             <h6>Save Approximately:</h6>
             <div className="flex items-center gap-5">
               {transfer && selectMode && <span>{calculateSavings}</span>}
-              <span>{selectMode === 6 ? "TRX" : "USDT"}</span>
+              <span>{selectMode === 7 ? "TRX" : "USDT"}</span>
             </div>
           </div>
           <div className="flex-start flex gap-2">
