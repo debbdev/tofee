@@ -65,7 +65,8 @@ function BuyEnergy() {
     } else if (transfer && selectMode === 1.1) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
-      const referenceValue = 1.72 * transferValue;
+      // const referenceValue = 1.72 * transferValue;
+      const referenceValue = 1.4667 * transferValue;
       const calculatedSavings =
         (referenceValue - calcResult) * flashSaleDiscount;
       return calculatedSavings.toFixed(2);
