@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,19 @@ function EnergyMine() {
     visible: false,
     message: "",
   });
+  const [maxScreen, setMaxScreen] = useState<boolean>(false);
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setMaxScreen(window.innerWidth < 640);
+    };
 
+    checkScreenSize();
+
+    window.addEventListener("resize", checkScreenSize);
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
   // Conversion rate
   const conversionRate = 0.1284;
   const difference = 0.1;
@@ -80,9 +92,7 @@ function EnergyMine() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h1 className="text-2xl font-bold sm:text-3xl">
-                    FEM: FeeTrx Energy Mine
-                  </h1>
+                  <h1 className="text-xl font-bold">FEM: FeeTrx Energy Mine</h1>
                   <div className="mt-2 flex items-center gap-4">
                     <h2 className="text-sm">49.9% APY</h2>
                     <Image
@@ -147,19 +157,21 @@ function EnergyMine() {
             <Card className="text-dark100_light900 background-light900_dark200 mb-8 p-3 max-lg:w-[30rem] max-sm:w-80 sm:order-2 sm:w-full lg:w-[30rem]">
               <CardContent>
                 <h2 className="py-4 text-xl">Next FEM & TRX rewards in:</h2>
-
-                <FlipCountdown
-                  hideYear
-                  hideMonth
-                  hideDay
-                  endAtZero
-                  titlePosition="bottom"
-                  hourTitle="Hours"
-                  minuteTitle="Minutes"
-                  secondTitle="Seconds"
-                  endAt={"2025-12-12 01:26:58"}
-                  theme={mode === "dark" ? "dark" : "light"}
-                />
+                <div className="w-[16.36rem] sm:w-full">
+                  <FlipCountdown
+                    hideYear
+                    hideMonth
+                    hideDay
+                    endAtZero
+                    titlePosition="bottom"
+                    hourTitle="Hours"
+                    minuteTitle="Minutes"
+                    secondTitle="Seconds"
+                    size={maxScreen ? "base" : "medium"}
+                    endAt={"2025-12-12 01:26:58"}
+                    theme={mode === "dark" ? "dark" : "light"}
+                  />
+                </div>
               </CardContent>
             </Card>
             <Card className="text-dark100_light900 background-light900_dark200 p-6 max-lg:w-[30rem] max-sm:w-80 sm:order-1 sm:w-full lg:w-[30rem]">

@@ -145,10 +145,18 @@ function BuyEnergy() {
                       position="popper"
                       className="text-dark100_light900 background-light900_dark200"
                     >
-                      <SelectItem id="mySelect" value="7">
+                      <SelectItem
+                        id="mySelect"
+                        value="7"
+                        className=" px-1 sm:px-1 lg:px-2"
+                      >
                         7 TRX/1 Hour
                       </SelectItem>
-                      <SelectItem id="mySelect" value="1.1">
+                      <SelectItem
+                        id="mySelect"
+                        value="1.1"
+                        className=" px-1 sm:px-1 lg:px-2"
+                      >
                         1.1 USDT/Unlimited
                       </SelectItem>
                     </SelectContent>
