@@ -103,7 +103,7 @@ function EnergyMine() {
                       className="brand-color"
                     />
                   </div>
-                  <p className="mt-4 ">
+                  <p className="mt-4 max-w-screen-sm sm:max-w-screen-sm lg:max-w-screen-sm">
                     The FeeTrx energy rental platform is an energy exchange
                     platform in wave field ecology. Our goal is to reduce the
                     TRX fee required for wave traders to consume energy. <br />
@@ -117,15 +117,15 @@ function EnergyMine() {
               <h2 className="mx-auto pt-3 text-xl font-semibold max-sm:w-40  sm:w-full sm:px-8">
                 Instructions
               </h2>
-              <div className="flex-start mx-auto max-w-screen-sm flex-wrap max-lg:w-[50rem] max-sm:w-80 sm:max-w-screen-sm sm:gap-0 sm:px-12 lg:w-[50rem] lg:max-w-screen-xl lg:gap-6 lg:px-8">
-                <ul className="mx-auto mt-3 list-disc max-lg:w-[19rem] max-sm:w-60 sm:mx-auto sm:w-full lg:mx-0 lg:w-64 ">
+              <div className="flex-start mx-auto max-w-screen-sm flex-wrap max-sm:w-80 sm:max-w-screen-sm sm:gap-0 sm:px-12  lg:max-w-screen-lg lg:gap-6 lg:px-8">
+                <ul className="mx-auto mt-3 list-disc max-lg:w-[19rem] max-sm:w-60 sm:mx-auto sm:w-full lg:mx-0 lg:w-64">
                   <li>Please use a decentralized wallet to rent energy.</li>
                   <li>
                     The system accountant calculates the total amount and
                     amount. Support TRX or USDT payments.
                   </li>
                 </ul>
-                <ul className="mx-auto mt-3 list-disc max-lg:w-[19rem] max-sm:w-60 sm:mx-auto sm:w-full lg:mx-0 lg:w-64 ">
+                <ul className="mx-auto mt-3 list-disc max-lg:w-[19rem] max-sm:w-60 sm:mx-auto sm:w-full lg:mx-0 lg:w-64">
                   <li>
                     After payment, the platform will distribute the
                     corresponding energy to your account.
@@ -157,7 +157,7 @@ function EnergyMine() {
             <Card className="text-dark100_light900 background-light900_dark200 mb-8 p-3 max-lg:w-[30rem] max-sm:w-80 sm:order-2 sm:w-full lg:w-[30rem]">
               <CardContent>
                 <h2 className="py-4 text-xl">Next FEM & TRX rewards in:</h2>
-                <div className="w-[16.36rem] sm:w-full">
+                <div className="w-[17.8rem] sm:w-full">
                   <FlipCountdown
                     hideYear
                     hideMonth
