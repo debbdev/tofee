@@ -29,17 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      {/* <body className={`${inter.variable} ${spaceGrotesk.variable}`}> */}
-      <body className={`${inter.variable}`}>
-        <ClerkProvider
-          appearance={{
-            elements: {
-              formButtonPrimary: "primary-gradient",
-              footerActionLink: "primary-text-gradient hover: text-primary-500",
-            },
-          }}
-        >
+    <ClerkProvider
+      appearance={{
+        elements: {
+          formButtonPrimary: "primary-gradient",
+          footerActionLink: "primary-text-gradient hover: text-primary-500",
+        },
+      }}
+    >
+      <html lang="en">
+        {/* <body className={`${inter.variable} ${spaceGrotesk.variable}`}> */}
+        <body className={`${inter.variable}`}>
           {/* <SignedOut>
             <SignInButton />
           </SignedOut>
@@ -47,8 +47,8 @@ export default function RootLayout({
             <UserButton />
           </SignedIn> */}
           {children}
-        </ClerkProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

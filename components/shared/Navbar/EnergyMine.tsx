@@ -30,15 +30,16 @@ function EnergyMine() {
     };
   }, []);
   // Conversion rate
-  const conversionRate = 0.1284;
-  const difference = 0.1;
+  // const conversionRate = 0.1284;
+  // const difference = 0.1;
+  const usdtCharge = 5.86;
 
   // Update TRX when USDT changes
   const handleUsdtChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const usdtValue = parseFloat(e.target.value);
     setUSDT(e.target.value);
     if (!isNaN(usdtValue)) {
-      setTRX((usdtValue / conversionRate - difference).toFixed(2));
+      setTRX((usdtValue * usdtCharge).toFixed(2));
     } else {
       setTRX("");
     }
@@ -49,7 +50,7 @@ function EnergyMine() {
     const trxValue = parseFloat(e.target.value);
     setTRX(e.target.value);
     if (!isNaN(trxValue)) {
-      setUSDT((trxValue * conversionRate).toFixed(2));
+      setUSDT((trxValue / usdtCharge).toFixed(2));
     } else {
       setUSDT("");
     }

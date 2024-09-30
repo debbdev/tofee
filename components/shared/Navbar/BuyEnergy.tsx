@@ -55,18 +55,22 @@ function BuyEnergy() {
 
   // Calculate savings based on transfer, selectMode, and currency
   const calculateSavings = useMemo(() => {
-    if (transfer && selectMode === 7) {
+    if (transfer && selectMode === 6) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
-      const referenceValue = 13.5366 * transferValue;
+      // official trx transfer charge in usdt = 13.5366
+      const ottcuValue = 13.5366;
+      const referenceValue = ottcuValue * transferValue;
       const calculatedSavings =
         (referenceValue - calcResult) * flashSaleDiscount;
       return calculatedSavings.toFixed(2);
-    } else if (transfer && selectMode === 1.1) {
+    } else if (transfer && selectMode === 1.2) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
       // const referenceValue = 1.72 * transferValue;
-      const referenceValue = 1.4667 * transferValue;
+      // official trx transfer charge ottc = 2.09
+      const ottcValue = 2.09;
+      const referenceValue = ottcValue * transferValue;
       const calculatedSavings =
         (referenceValue - calcResult) * flashSaleDiscount;
       return calculatedSavings.toFixed(2);
@@ -147,17 +151,17 @@ function BuyEnergy() {
                     >
                       <SelectItem
                         id="mySelect"
-                        value="7"
+                        value="6"
                         className=" px-1 sm:px-1 lg:px-2"
                       >
-                        7 TRX/1 Hour
+                        6 TRX/1 Hour
                       </SelectItem>
                       <SelectItem
                         id="mySelect"
-                        value="1.1"
+                        value="1.2"
                         className=" px-1 sm:px-1 lg:px-2"
                       >
-                        1.1 USDT/Unlimited
+                        1.2 USDT/Unlimited
                       </SelectItem>
                     </SelectContent>
                   </Select>
