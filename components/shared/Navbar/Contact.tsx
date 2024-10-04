@@ -43,58 +43,55 @@ const ContactPage: React.FC = () => {
   }, [sent]);
 
   return (
-    <div className="flex justify-center gap-5 sm:flex-wrap lg:flex-nowrap">
-      <div className="flex flex-col sm:me-10 sm:w-[650px] lg:me-16 lg:h-[500px] lg:w-[480px]">
-        <Card className="text-dark100_light900 background-light900_dark200 h-full">
-          <CardContent>
-            <h1 className="h2-bold text-center text-xl">Contact Us</h1>
-            <form onSubmit={handleSubmit} className="mt-4">
-              <div className="text-dark100_light900 background-light900_dark200 mb-4">
-                <label htmlFor="form-name">Name</label>
-                <input
-                  id="form-name"
-                  autoComplete="name"
-                  maxLength={50}
-                  name="name"
-                  className="text-dark100_light900 background-light900_dark200 mt-1 block w-full border p-2"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="form-email">Email</label>
-                <input
-                  id="form-email"
-                  required
-                  autoComplete="email"
-                  maxLength={80}
-                  name="email"
-                  type="email"
-                  className="text-dark100_light900 background-light900_dark200 mt-1 block w-full border p-2"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="form-message">Message</label>
-                <textarea
-                  id="form-message"
-                  required
-                  name="message"
-                  rows={5}
-                  className="text-dark100_light900 background-light900_dark200 mt-1 block w-full border p-2"
-                />
-              </div>
-              <button
-                className="brand-gradient mx-auto rounded px-6 py-3 text-center text-white"
-                type="submit"
-              >
-                Send
-              </button>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-
+    <div className="flex flex-col px-2 sm:px-2 lg:px-16">
+      <Card className="text-dark100_light900 background-light900_dark200 my-5 max-w-screen-sm p-5 sm:max-w-screen-sm lg:max-w-screen-xl">
+        <CardContent className="">
+          <h1 className="h2-bold text-center text-xl">Contact Us</h1>
+          <form onSubmit={handleSubmit} className="mt-4">
+            <div className="text-dark100_light900 background-light900_dark200 mb-4">
+              <label htmlFor="form-name">Name</label>
+              <input
+                id="form-name"
+                autoComplete="name"
+                maxLength={50}
+                name="name"
+                className="text-dark100_light900 background-light900_dark200 mt-1 block w-full border p-2"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="form-email">Email</label>
+              <input
+                id="form-email"
+                required
+                autoComplete="email"
+                maxLength={80}
+                name="email"
+                type="email"
+                className="text-dark100_light900 background-light900_dark200 mt-1 block w-full border p-2"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="form-message">Message</label>
+              <textarea
+                id="form-message"
+                required
+                name="message"
+                rows={5}
+                className="text-dark100_light900 background-light900_dark200 mt-1 block w-full border p-2"
+              />
+            </div>
+            <button
+              className="brand-gradient mx-auto flex rounded px-6 py-3 text-center text-white"
+              type="submit"
+            >
+              Send
+            </button>
+          </form>
+        </CardContent>
+      </Card>
       {sent && (
         <Dialog open={true}>
-          <DialogContent>
+          <DialogContent className="max-w-screen-xs sm:max-w-screen-xs lg:max-w-screen-sm">
             <p className="text-dark100_light900">{dialogMessage}</p>
           </DialogContent>
         </Dialog>

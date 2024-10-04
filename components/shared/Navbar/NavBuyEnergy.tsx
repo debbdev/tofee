@@ -58,7 +58,9 @@ function BuyEnergy() {
     if (transfer && selectMode === 6) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
-      const referenceValue = 13.5366 * transferValue;
+      // official trx transfer charge in usdt = 13.5366
+      const ottcuValue = 13.5366;
+      const referenceValue = ottcuValue * transferValue;
       const calculatedSavings =
         (referenceValue - calcResult) * flashSaleDiscount;
       return calculatedSavings.toFixed(2);
@@ -66,7 +68,9 @@ function BuyEnergy() {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
       // const referenceValue = 1.72 * transferValue;
-      const referenceValue = 1.4667 * transferValue;
+      // official trx transfer charge ottc = 2.09
+      const ottcValue = 2.09;
+      const referenceValue = ottcValue * transferValue;
       const calculatedSavings =
         (referenceValue - calcResult) * flashSaleDiscount;
       return calculatedSavings.toFixed(2);
@@ -95,8 +99,8 @@ function BuyEnergy() {
   };
 
   return (
-    <div className="custom-scrollbar mx-auto gap-5 p-6 max-sm:w-[26rem] sm:w-[26rem] lg:w-[28rem] lg:p-4">
-      <Card className="text-dark100_light900 background-light900_dark200 mb-8 w-full px-6 py-5">
+    <div className="custom-scrollbar mx-auto gap-5 p-6 max-sm:w-96 sm:w-96 sm:p-6 lg:w-[35rem] lg:p-4">
+      <Card className="text-dark100_light900 background-light900_dark200 mb-8 mt-5 w-full px-6 pb-5 pt-10 sm:mt-5 lg:mt-10">
         <CardContent className="flex flex-col gap-6">
           <div>
             <h6>
@@ -148,7 +152,7 @@ function BuyEnergy() {
                       <SelectItem id="mySelect" value="6">
                         6 TRX/1 Hour
                       </SelectItem>
-                      <SelectItem id="mySelect" value="1.1">
+                      <SelectItem id="mySelect" value="1.2">
                         1.2 USDT/Unlimited
                       </SelectItem>
                     </SelectContent>
@@ -162,7 +166,7 @@ function BuyEnergy() {
           </form>
         </CardContent>
       </Card>
-      <Card className="text-dark100_light900 background-light900_dark200 px-6 py-5">
+      <Card className="text-dark100_light900 background-light900_dark200 px-6 pb-5 pt-10">
         <CardContent className="flex flex-col gap-6">
           <div>
             <h6>

@@ -29,3 +29,16 @@ export interface Transactions {
   payout: string;
   status: string;
 }
+export interface FAQ {
+  id: string;
+  title: string;
+  body: string;
+}
+
+export interface Blogs {
+  id: number;
+  heading: string;
+  blogText: string;
+  img: string;
+  time: string;
+}

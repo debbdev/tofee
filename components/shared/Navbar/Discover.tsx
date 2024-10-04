@@ -3,8 +3,6 @@ import React from "react";
 import Tweet from "./Tweet";
 import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 import Contact from "./Contact";
-import FrequentlyAskedQuestion from "./FrequentlyAskedQuestion";
-import TermsAndConditions from "./TermsCondition";
 
 function Discover() {
   return (
@@ -29,30 +27,16 @@ function Discover() {
         </div>
         <div className="mb-8 flex flex-col max-sm:w-80 sm:mb-0 sm:w-full sm:px-10 lg:w-64">
           <h1 className=" text-xl font-bold">Links</h1>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Link href="/freq-asked-question" className="mt-2 block">
-                FAQ
-              </Link>
-            </DialogTrigger>
-            <DialogContent className="text-dark100_light900 background-light900_dark200 items-center">
-              <FrequentlyAskedQuestion />
-            </DialogContent>
-          </Dialog>
+          <Link href="/freq-asked-question" className="mt-2 block">
+            FAQ
+          </Link>
 
-          <Link href="/" className="mt-2 block">
+          <Link href="/blog" className="mt-2 block">
             Blog
           </Link>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Link href="/terms-conditions" className="mt-2 block">
-                Terms & conditions
-              </Link>
-            </DialogTrigger>
-            <DialogContent className="text-dark100_light900 background-light900_dark200 items-center">
-              <TermsAndConditions />
-            </DialogContent>
-          </Dialog>
+          <Link href="/terms-conditions" className="mt-2 block">
+            Terms & conditions
+          </Link>
 
           <Dialog>
             <DialogTrigger asChild>
@@ -60,7 +44,7 @@ function Discover() {
                 Email support
               </Link>
             </DialogTrigger>
-            <DialogContent className="text-dark100_light900 background-light900_dark200 items-center">
+            <DialogContent className="text-dark100_light900 background-light900_dark200 max-w-screen-xs items-center sm:max-w-screen-xs lg:max-w-screen-sm">
               <Contact />
             </DialogContent>
           </Dialog>

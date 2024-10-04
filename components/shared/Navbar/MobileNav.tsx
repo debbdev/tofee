@@ -15,7 +15,6 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import NavBuyEnergy from "./NavBuyEnergy";
 import CurrencyExchange from "./CurrencyExchange";
 import { Card, CardContent } from "@/components/ui/card";
-import FrequentlyAskedQuestion from "./FrequentlyAskedQuestion";
 import Profile from "./Profile";
 import Support from "./Support";
 
@@ -56,20 +55,20 @@ const NavContent = () => {
                 switch (item.route) {
                   case "/energy-exchange":
                     return (
-                      <DialogContent className="text-dark100_light900 background-light900_dark200 flex flex-col items-center overflow-hidden pb-20 pr-64 pt-0">
+                      <DialogContent className="text-dark100_light900 background-light900_dark200 flex max-w-screen-xs flex-col items-center overflow-hidden pb-20 pr-64 pt-0 sm:max-w-screen-xs lg:max-w-screen-sm">
                         <NavBuyEnergy />
                       </DialogContent>
                     );
                   case "/currency-exchange":
                     return (
-                      <DialogContent className="text-dark100_light900 background-light900_dark200 px-10 py-14">
+                      <DialogContent className="text-dark100_light900 background-light900_dark200 max-w-screen-xs px-10 py-14 sm:max-w-screen-xs lg:max-w-screen-sm">
                         <CurrencyExchange />
                       </DialogContent>
                     );
                   case "/about-us":
                     return (
-                      <DialogContent className="text-dark100_light900 background-light900_dark200 py-12">
-                        <Card>
+                      <DialogContent className="text-dark100_light900 background-light900_dark200 max-w-screen-xs py-12 sm:max-w-screen-xs lg:max-w-screen-sm">
+                        <Card className="pt-6">
                           <CardContent>
                             <h2 className="py-3 text-3xl">
                               FeeTrx Energy Market
@@ -106,19 +105,20 @@ const NavContent = () => {
                     );
                   case "/freq-asked-question":
                     return (
-                      <DialogContent className="text-dark100_light900 background-light900_dark200 items-center">
-                        <FrequentlyAskedQuestion />
-                      </DialogContent>
+                      <Link
+                        href={"/freq-asked-question"}
+                        className="text-dark100_light900 background-light900_dark200 items-center"
+                      ></Link>
                     );
                   case "/profile":
                     return (
-                      <DialogContent className="text-dark100_light900 background-light900_dark200">
+                      <DialogContent className="text-dark100_light900 background-light900_dark200 max-w-screen-xs sm:max-w-screen-xs lg:max-w-screen-sm">
                         <Profile />
                       </DialogContent>
                     );
                   case "/support":
                     return (
-                      <DialogContent className="text-dark100_light900 background-light900_dark200 items-center pt-10">
+                      <DialogContent className="text-dark100_light900 background-light900_dark200 max-w-screen-xs items-center pt-10 sm:max-w-screen-xs lg:max-w-screen-sm">
                         <Support />
                       </DialogContent>
                     );
