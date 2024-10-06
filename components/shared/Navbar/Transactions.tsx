@@ -14,18 +14,21 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Progress } from "./Progress";
+import { TransactionsData, TransferData } from "@/types";
+import Info from "./Info";
 
-interface TransactionsProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+type CombinedData = TransactionsData | TransferData;
+
+interface TransactionsProps {
+  columns: ColumnDef<CombinedData>[];
+  transactions: TransactionsData[];
+  transfers: TransferData[];
 }
 
-function Transactions<TData, TValue>({
-  columns,
-  data,
-}: TransactionsProps<TData, TValue>) {
+function Transactions({ columns, transactions, transfers }: TransactionsProps) {
+  const combinedData = [...transactions, ...transfers];
   const table = useReactTable({
-    data,
+    data: combinedData,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -57,8 +60,10 @@ function Transactions<TData, TValue>({
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {cell.column.id === "status" ? (
-                        <Progress value={row.getValue("status") as number} />
+                      {cell.column.id === "confirmed" ? (
+                        <Progress value={row.getValue("confirmed")} />
+                      ) : cell.column.id === "token_logo" ? (
+                        <Info value={row.original.tokenInfo.tokenLogo} />
                       ) : (
                         flexRender(
                           cell.column.columnDef.cell,

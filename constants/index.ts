@@ -1,6 +1,15 @@
-import { SidebarLink, Payment, Logos, Transactions, FAQ, Blogs } from "@/types";
+import {
+  SidebarLink,
+  Payment,
+  Logos,
+  Transactions,
+  FAQ,
+  Blogs,
+  TransactionsData,
+  TransferData,
+} from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
-
+type CombinedData = TransactionsData | TransferData;
 export const sidebarLinks: SidebarLink[] = [
   {
     imgURL: "/assets/icons/home.svg",
@@ -283,34 +292,45 @@ export const transactions: Transactions[] = [
     status: "100",
   },
 ];
-export const columns: ColumnDef<Transactions>[] = [
+export const columns: ColumnDef<CombinedData>[] = [
   {
-    accessorKey: "info",
+    accessorKey: "token_logo",
     header: "Info",
   },
+
   {
-    accessorKey: "date",
+    accessorKey: "timestamp",
     header: "Date",
+    cell: ({ row }) =>
+      new Date(row.original.timestamp).toLocaleString().replace(",", ""),
   },
   {
-    accessorKey: "buyer",
+    accessorKey: "ownerAddress",
     header: "Buyer",
+    cell: ({ row }) =>
+      row.original.ownerAddress || row.original.transferFromAddress || "N/A",
   },
   {
     accessorKey: "exchange",
     header: "Exchange",
+    cell: ({ row }) =>
+      row.original.tokenInfo.tokenName.toUpperCase() + " To Energy",
   },
   {
     accessorKey: "energy",
     header: "Energy",
+    cell: ({ row }) =>
+      row.original.cost?.net_fee !== undefined
+        ? row.original.cost.net_fee
+        : "N/A",
   },
   {
-    accessorKey: "payout",
+    accessorKey: "amount",
     header: "Payout",
   },
 
   {
-    accessorKey: "status",
+    accessorKey: "confirmed",
     header: "Status",
   },
 ];

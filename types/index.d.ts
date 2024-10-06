@@ -29,6 +29,7 @@ export interface Transactions {
   payout: string;
   status: string;
 }
+
 export interface FAQ {
   id: string;
   title: string;
@@ -41,4 +42,37 @@ export interface Blogs {
   blogText: string;
   img: string;
   time: string;
+}
+
+export interface TransactionsData {
+  timestamp: number;
+  ownerAddress: string;
+  transferFromAddress?: string;
+  amount: number;
+  energy: string;
+  confirmed: boolean;
+  cost: {
+    net_fee?: number;
+  };
+  tokenInfo: {
+    tokenType: string;
+    tokenName: string;
+    tokenLogo: string;
+  };
+}
+export interface TransferData {
+  timestamp: number;
+  transferFromAddress: string;
+  ownerAddress?: string;
+  amount: number;
+  energy: string;
+  confirmed: boolean;
+  cost: {
+    net_fee?: number;
+  };
+  tokenInfo: {
+    tokenType: string;
+    tokenName: string;
+    tokenLogo: string;
+  };
 }
