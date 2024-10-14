@@ -14,8 +14,10 @@ export async function GET() {
     return NextResponse.json({ error: "API key is missing" }, { status: 400 });
   }
 
-  const transactionsUrl = `https://apilist.tronscanapi.com/api/transaction?sort=-timestamp&count=true&limit=5&start=0&address=${address}`;
-  const transfersUrl = `https://apilist.tronscanapi.com/api/transfer?sort=-timestamp&count=true&limit=5&start=0&token=_&address=${address}`;
+  const timestamp = new Date().getTime();
+
+  const transactionsUrl = `https://apilist.tronscanapi.com/api/transaction?sort=-timestamp&count=true&limit=5&start=0&address=${address}&_=${timestamp}`;
+  const transfersUrl = `https://apilist.tronscanapi.com/api/transfer?sort=-timestamp&count=true&limit=5&start=0&token=_&address=${address}&_=${timestamp}`;
 
   try {
     const [transactionsResponse, transfersResponse] = await Promise.all([
@@ -23,12 +25,18 @@ export async function GET() {
         method: "GET",
         headers: {
           "TRON-PRO-API-KEY": apiKey,
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+          Expires: "0",
         },
       }),
       fetch(transfersUrl, {
         method: "GET",
         headers: {
           "TRON-PRO-API-KEY": apiKey,
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+          Expires: "0",
         },
       }),
     ]);
