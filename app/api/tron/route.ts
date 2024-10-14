@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { TransactionsData, TransferData } from "@/types";
-import Redis from "ioredis"; // Using Redis for SETNX
+import Redis from "ioredis";
 
 const redis = new Redis();
 

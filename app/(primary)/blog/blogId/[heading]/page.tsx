@@ -1,11 +1,23 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { blogs } from "@/constants";
 import Link from "next/link";
+import { Blogs } from "@/types";
 
 function Page() {
+  const [blogs, setBlogs] = useState<Blogs[]>([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const response = await fetch("/api/blogs");
+      const data = await response.json();
+      setBlogs(data);
+    };
+
+    fetchBlogs();
+  }, []);
+
   const { heading } = useParams();
   const decodedHeading = decodeURIComponent(heading as string);
   const blog = blogs.find((blog) => blog.heading === decodedHeading);

@@ -1,9 +1,22 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { blogs } from "@/constants";
+import { Blogs } from "@/types";
 
-function page() {
+function Page() {
+  const [blogs, setBlogs] = useState<Blogs[]>([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const response = await fetch("/api/blogs");
+      const data = await response.json();
+      setBlogs(data);
+    };
+
+    fetchBlogs();
+  }, []);
+
   return (
     <section className="bg-neutral-200 pb-16 pt-28">
       <div className="mx-auto max-w-screen-sm sm:max-w-screen-sm lg:max-w-screen-lg">
@@ -70,4 +83,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
