@@ -24,20 +24,18 @@ type CombinedData = TransactionsData | TransferData;
 
 interface TransactionsProps {
   columns: ColumnDef<CombinedData>[];
-  initialTransactions?: TransactionsData[];
-  initialTransfers?: TransferData[];
-  walletAddress: string;
+  transactions?: TransactionsData[]; // Changed from initialTransactions
+  transfers?: TransferData[]; // Changed from initialTransfers
 }
 
 function Transactions({
   columns,
-  initialTransactions = [],
-  initialTransfers = [],
-  walletAddress,
+  transactions = [], // Changed from initialTransactions
+  transfers = [], // Changed from initialTransfers
 }: TransactionsProps) {
-  const [transactions, setTransactions] =
-    useState<TransactionsData[]>(initialTransactions);
-  const [transfers, setTransfers] = useState<TransferData[]>(initialTransfers);
+  const [transactionData, setTransactionData] =
+    useState<TransactionsData[]>(transactions);
+  const [transferData, setTransferData] = useState<TransferData[]>(transfers);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -57,8 +55,8 @@ function Transactions({
         const txsData = await txsResponse.json();
         const transfersData = await transfersResponse.json();
 
-        setTransactions(txsData.data || []);
-        setTransfers(transfersData.data || []);
+        setTransactionData(txsData.data || []);
+        setTransferData(transfersData.data || []);
         setError(null);
       } catch (err) {
         console.error("Failed to fetch data:", err);
@@ -73,9 +71,8 @@ function Transactions({
     return () => clearInterval(interval);
   }, []);
 
-  // Rest of your component remains the same...
   const combinedData = React.useMemo(() => {
-    const allData = [...transactions, ...transfers];
+    const allData = [...transactionData, ...transferData];
     return allData.sort((a, b) => {
       const timestampA =
         "block_timestamp" in a ? a.block_timestamp : a.blockTimestamp;
@@ -83,7 +80,7 @@ function Transactions({
         "block_timestamp" in b ? b.block_timestamp : b.blockTimestamp;
       return timestampB - timestampA;
     });
-  }, [transactions, transfers]);
+  }, [transactionData, transferData]);
 
   const table = useReactTable({
     data: combinedData,
