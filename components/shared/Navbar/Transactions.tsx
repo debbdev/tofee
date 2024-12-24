@@ -16,10 +16,9 @@ import {
 import { Progress } from "./Progress";
 import { TransactionsData, TransferData } from "@/types";
 import Info from "./Info";
-import {
-  fetchTronTransactions,
-  fetchTronTransfers,
-} from "@/app/api/tronweb/route";
+
+// Remove these imports
+// import { fetchTronTransactions, fetchTronTransfers } from "@/app/api/tronweb/route";
 
 type CombinedData = TransactionsData | TransferData;
 
@@ -46,13 +45,20 @@ function Transactions({
     const loadData = async () => {
       try {
         setIsLoading(true);
-        const [txs, transferData] = await Promise.all([
-          fetchTronTransactions(walletAddress),
-          fetchTronTransfers(walletAddress),
+        const [txsResponse, transfersResponse] = await Promise.all([
+          fetch(`/api/tronweb?type=transactions`),
+          fetch(`/api/tronweb?type=transfers`),
         ]);
 
-        setTransactions(txs);
-        setTransfers(transferData);
+        if (!txsResponse.ok || !transfersResponse.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const txsData = await txsResponse.json();
+        const transfersData = await transfersResponse.json();
+
+        setTransactions(txsData.data || []);
+        setTransfers(transfersData.data || []);
         setError(null);
       } catch (err) {
         console.error("Failed to fetch data:", err);
@@ -63,12 +69,11 @@ function Transactions({
     };
 
     loadData();
-    // Poll every 10 seconds
     const interval = setInterval(loadData, 10000);
-
     return () => clearInterval(interval);
-  }, [walletAddress]);
+  }, []);
 
+  // Rest of your component remains the same...
   const combinedData = React.useMemo(() => {
     const allData = [...transactions, ...transfers];
     return allData.sort((a, b) => {

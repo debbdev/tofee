@@ -1,12 +1,13 @@
 import axios from "axios";
 import { TransactionsData, TransferData } from "@/types";
+import { NextResponse } from "next/server";
 
 const TRONGRID_API = "https://api.trongrid.io";
 const API_KEY = process.env.NEXT_PUBLIC_TRONGRID_API_KEY;
 const walletAddress = process.env.NEXT_PUBLIC_WALLET_ADDRESS;
 
-if (!API_KEY) {
-  console.error("TRONGRID API KEY is not set in environment variables");
+if (!API_KEY || !walletAddress) {
+  console.error("Missing required environment variables");
 }
 
 const trongridApi = axios.create({
@@ -16,9 +17,44 @@ const trongridApi = axios.create({
   },
 });
 
-export async function fetchTronTransactions(
-  address: string
-): Promise<TransactionsData[]> {
+export async function GET(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const type = searchParams.get("type");
+
+    let data;
+    try {
+      if (type === "transfers") {
+        data = await fetchTronTransfers();
+      } else {
+        data = await fetchTronTransactions();
+      }
+    } catch (fetchError: any) {
+      console.error("Fetch error details:", {
+        message: fetchError.message,
+        response: fetchError.response?.data,
+        status: fetchError.response?.status,
+      });
+      throw fetchError;
+    }
+
+    return NextResponse.json({ data });
+  } catch (error: any) {
+    console.error("API Error:", {
+      message: error.message,
+      response: error.response?.data,
+    });
+    return NextResponse.json(
+      {
+        error: "Failed to fetch TRON data",
+        details: error.message,
+      },
+      { status: 500 }
+    );
+  }
+}
+
+async function fetchTronTransactions(): Promise<TransactionsData[]> {
   try {
     const response = await trongridApi.get(
       `/v1/accounts/${walletAddress}/transactions`,
@@ -33,15 +69,17 @@ export async function fetchTronTransactions(
       ...tx,
       type: "transaction",
     }));
-  } catch (error) {
-    console.error("Error fetching transactions:", error);
+  } catch (error: any) {
+    console.error("Error fetching transactions:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+    });
     throw error;
   }
 }
 
-export async function fetchTronTransfers(
-  address: string
-): Promise<TransferData[]> {
+async function fetchTronTransfers(): Promise<TransferData[]> {
   try {
     const response = await trongridApi.get(
       `/v1/accounts/${walletAddress}/transactions/trc20`,
@@ -56,8 +94,12 @@ export async function fetchTronTransfers(
       ...transfer,
       type: "transfer",
     }));
-  } catch (error) {
-    console.error("Error fetching transfers:", error);
+  } catch (error: any) {
+    console.error("Error fetching transfers:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+    });
     throw error;
   }
 }
