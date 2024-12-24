@@ -23,7 +23,9 @@
     "@rumess/react-flip-countdown": "^1.2.6",
     "@tailwindcss/typography": "^0.5.13",
     "@tanstack/react-table": "^8.20.1",
+    "@tronsocket/sdk": "^0.1.10",
     "@types/mongoose": "^5.11.96",
+    "@types/ws": "^8.5.13",
     "axios": "^1.7.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -47,9 +49,11 @@
     "react-hook-form": "^7.52.1",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "tronweb": "^6.0.0",
     "twitter-api-v2": "^1.17.2",
     "twitter-lite": "^1.1.0",
     "web3": "^4.13.0",
+    "ws": "^8.18.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

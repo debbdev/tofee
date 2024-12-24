@@ -45,25 +45,55 @@ export interface Blogs {
 }
 
 export interface TransactionsData {
-  timestamp: number;
-  ownerAddress: string;
-  transferFromAddress?: string;
-  amount: number;
+  type: "transaction";
+  txID: string;
+  fee: number;
+  raw_data: {
+    contract: [
+      {
+        parameter: {
+          value: {
+            owner_address: string;
+            to_address: string;
+            amount: number;
+          };
+        };
+      },
+    ];
+  };
+  ret: {
+    contractRet: string;
+  };
+  blockTimestamp: number;
+  // owner_address: string;
+  // from: string;
+  // to_address: string;
+  // to: string;
+  amount: string;
   energy: string;
+  contractRet: string;
   confirmed: boolean;
   cost: {
     net_fee?: number;
   };
   tokenInfo: {
+    symbol: string;
+    decimals: number;
     tokenType: string;
     tokenName: string;
     tokenLogo: string;
   };
 }
 export interface TransferData {
-  timestamp: number;
-  transferFromAddress: string;
-  ownerAddress?: string;
+  type: "transfer";
+  transaction_id: string;
+  block_timestamp: number;
+  // transferFromAddress: string;
+  from: string;
+  // ownerAddress: string;
+  // toAddress: string;
+  to: string;
+  value: number;
   amount: number;
   energy: string;
   confirmed: boolean;
@@ -71,8 +101,32 @@ export interface TransferData {
     net_fee?: number;
   };
   tokenInfo: {
+    symbol: string;
+    decimals: number;
     tokenType: string;
     tokenName: string;
     tokenLogo: string;
   };
+}
+export interface TronTransaction {
+  hash: string;
+  timestamp: number;
+  ownerAddress: string;
+  toAddress: string;
+  amount: number;
+  confirmed: boolean;
+  contractType: number;
+}
+
+export interface TronGridEvent {
+  type: string;
+  transaction_id: string;
+  contract_address: string;
+  event: string;
+  result: {
+    from: string;
+    to: string;
+    value: string;
+  };
+  block_timestamp: number;
 }

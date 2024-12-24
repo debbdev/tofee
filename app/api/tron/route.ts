@@ -1,74 +1,69 @@
-import { NextResponse } from "next/server";
-import { TransactionsData, TransferData } from "@/types";
-import Redis from "ioredis";
+import { NextRequest } from "next/server";
+import { TronWebSocketManager } from "@/lib/tron-websocket";
 
-const redis = new Redis();
+export const dynamic = "force-dynamic";
 
-interface ApiResponse {
-  data: TransactionsData[] | TransferData[];
-}
-
-async function fetchTransactions(
-  address: string,
-  apiKey: string,
-  start: number
-) {
-  const transactionsUrl = `https://apilist.tronscanapi.com/api/transaction?sort=-timestamp&count=true&limit=5&start=${start}&address=${address}`;
-  const transfersUrl = `https://apilist.tronscanapi.com/api/transfer?sort=-timestamp&count=true&limit=5&start=${start}&token=_&address=${address}`;
-
-  const [transactionsResponse, transfersResponse] = await Promise.all([
-    fetch(transactionsUrl, {
-      method: "GET",
-      headers: { "TRON-PRO-API-KEY": apiKey },
-    }),
-    fetch(transfersUrl, {
-      method: "GET",
-      headers: { "TRON-PRO-API-KEY": apiKey },
-    }),
-  ]);
-
-  if (!transactionsResponse.ok || !transfersResponse.ok) {
-    throw new Error("Failed to fetch transactions or transfers");
-  }
-
-  const transactionsData: ApiResponse = await transactionsResponse.json();
-  const transfersData: ApiResponse = await transfersResponse.json();
-
-  return { transactions: transactionsData.data, transfers: transfersData.data };
-}
-
-async function getNewBlocks(apiKey: string, address: string) {
-  const lastProcessedBlock = await redis.get("last_processed_block");
-  const newBlockNumber = parseInt(lastProcessedBlock || "0") + 1;
-
-  const result = await fetchTransactions(address, apiKey, newBlockNumber);
-
-  await redis.set("last_processed_block", newBlockNumber);
-
-  return result;
-}
-
-export async function GET() {
-  const apiKey = process.env.NEXT_PUBLIC_WALLET_API_KEY;
+export async function GET(request: NextRequest) {
+  const trongridApiKey = process.env.NEXT_PUBLIC_TRONGRID_API_KEY;
+  const tronscanApiKey = process.env.NEXT_PUBLIC_TRONSCAN_API_KEY;
   const address = process.env.NEXT_PUBLIC_WALLET_ADDRESS;
 
-  if (!apiKey || !address) {
-    return NextResponse.json(
-      { error: "API key or address missing" },
-      { status: 400 }
+  if (!trongridApiKey || !address) {
+    console.error(
+      "Missing configuration: trongridApiKey or address is undefined."
     );
+    return Response.json({ error: "Missing configuration" }, { status: 400 });
   }
 
-  try {
-    const data = await getNewBlocks(apiKey, address);
-    return NextResponse.json(data, {
-      headers: { "Content-Type": "application/json" },
+  // Handle SSE for real-time updates
+  if (request.headers.get("accept") === "text/event-stream") {
+    const stream = new TransformStream();
+    const writer = stream.writable.getWriter();
+    const encoder = new TextEncoder();
+
+    const wsManager = TronWebSocketManager.getInstance(trongridApiKey);
+
+    wsManager.addSubscriber(async (data) => {
+      console.log("WebSocket received data:", data);
+      await writer.write(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
     });
+
+    return new Response(stream.readable, {
+      headers: {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+      },
+    });
+  }
+
+  // Handle historical data from TronScan
+  try {
+    // eslint-disable-next-line no-undef
+    const headers: HeadersInit = {
+      "TRON-PRO-API-KEY": tronscanApiKey || "",
+    };
+
+    const response = await fetch(
+      `https://apilist.tronscanapi.com/api/transaction?sort=-timestamp&limit=20&address=${address}`,
+      {
+        headers,
+        next: { revalidate: 30 }, // Cache for 30 seconds
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch transactions");
+    }
+
+    const data = await response.json();
+    // console.log("Fetched transaction data:", data);
+    return Response.json(data);
   } catch (error) {
-    console.error("Error fetching data:", error);
-    return NextResponse.json(
-      { error: "Error fetching data", details: (error as Error).message },
-      { status: 500, headers: { "Content-Type": "application/json" } }
+    // console.error("Error fetching transactions:", error);
+    return Response.json(
+      { error: "Failed to fetch transactions" },
+      { status: 500 }
     );
   }
 }

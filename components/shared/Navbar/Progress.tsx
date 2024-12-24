@@ -14,10 +14,10 @@ export const Progress: React.FC<ProgressProps> = ({ value }) => {
           className="flex h-5 items-center justify-center rounded-lg bg-primary-500"
           style={{ width: `${displayValue}%` }}
         >
-          <span className="text-white">{displayValue}%</span>
+          <span className=" text-white">{displayValue}%</span>
         </div>
       ) : (
-        <p>Pending</p>
+        <p className="rounded-lg bg-primary-500 text-center">SUCCESS</p>
       )}
     </div>
   );

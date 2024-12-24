@@ -294,40 +294,85 @@ export const transactions: Transactions[] = [
 ];
 export const columns: ColumnDef<CombinedData>[] = [
   {
+    accessorKey: "type",
+    header: "Transaction",
+    cell: ({ row }) => {
+      const type = row.original.type;
+      return type === "transaction" ? "TRX" : "TRC20";
+    },
+  },
+  /* {
     accessorKey: "token_logo",
     header: "Info",
   },
-
+*/
   {
-    accessorKey: "timestamp",
-    header: "Date",
-    cell: ({ row }) =>
-      new Date(row.original.timestamp).toLocaleString().replace(",", ""),
+    accessorKey: "block_timestamp",
+    header: "Time",
+    cell: ({ row }) => {
+      const timestamp =
+        "block_timestamp" in row.original
+          ? row.original.block_timestamp
+          : row.original.blockTimestamp;
+      return new Date(timestamp).toLocaleString().replace(",", "");
+    },
   },
   {
+    accessorKey: "from",
+    header: "From",
+    cell: ({ row }) => {
+      const address =
+        "from" in row.original
+          ? row.original.from
+          : row.original.raw_data.contract?.[0].parameter?.value?.owner_address;
+      return address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "N/A";
+    },
+  },
+
+  {
+    accessorKey: "to",
+    header: "To",
+    cell: ({ row }) => {
+      const address =
+        "to" in row.original
+          ? row.original.to
+          : row.original.raw_data?.contract?.[0]?.parameter?.value?.to_address;
+
+      return address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "N/A";
+    },
+  },
+
+  /* {
     accessorKey: "ownerAddress",
     header: "Buyer",
     cell: ({ row }) =>
       row.original.ownerAddress || row.original.transferFromAddress || "N/A",
-  },
+  }, */
   {
     accessorKey: "exchange",
     header: "Exchange",
-    cell: ({ row }) =>
-      row.original.tokenInfo.tokenName.toUpperCase() + " To Energy",
+    cell: ({ row }) => {
+      const type = row.original.type;
+      return type === "transaction" ? "TRX To Energy" : "TRC20 To Energy";
+      // row.original.tokenInfo.tokenName.toUpperCase() + " To Energy",
+    },
   },
   {
-    accessorKey: "energy",
+    accessorKey: "value",
     header: "Energy",
-    cell: ({ row }) =>
-      row.original.cost?.net_fee !== undefined
-        ? row.original.cost.net_fee
-        : "N/A",
+
+    cell: ({ row }) => {
+      const value =
+        "value" in row.original
+          ? row.original.value
+          : row.original.raw_data?.contract?.[0]?.parameter?.value?.amount;
+      return value;
+    },
   },
-  {
+  /* {
     accessorKey: "amount",
     header: "Payout",
-  },
+  }, */
 
   {
     accessorKey: "confirmed",
