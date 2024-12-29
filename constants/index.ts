@@ -9,6 +9,52 @@ import {
   TransferData,
 } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
+
+// Convert address to TRON format if needed
+function convertAddress(address: string): string {
+  // If address already starts with 'T', return as is
+  if (address.startsWith("T")) {
+    return address;
+  }
+
+  // If address starts with '41', convert it
+  if (address.startsWith("41")) {
+    try {
+      const cleanHex = address.slice(2); // Remove '41' prefix
+
+      // Use base58-js library or similar functions
+      const bytes = new Uint8Array(
+        cleanHex.match(/.{1,2}/g)?.map((byte) => parseInt(byte, 16)) || []
+      );
+      const BASE58_CHARS =
+        "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+
+      // Convert to decimal using string operations instead of BigInt
+      let value = 0;
+      for (let i = 0; i < bytes.length; i++) {
+        value = value * 256 + bytes[i];
+      }
+
+      // Convert to base58
+      let result = "";
+      while (value > 0) {
+        const remainder = value % 58;
+        result = BASE58_CHARS[remainder] + result;
+        value = Math.floor(value / 58);
+      }
+
+      // Add leading 'T'
+      return "T" + result;
+    } catch (error) {
+      console.error("Error converting address:", error);
+      return address; // Return original address if conversion fails
+    }
+  }
+
+  // If address doesn't match either pattern, return as is
+  return address;
+}
+
 type CombinedData = TransactionsData | TransferData;
 export const sidebarLinks: SidebarLink[] = [
   {
@@ -321,15 +367,39 @@ export const columns: ColumnDef<CombinedData>[] = [
     accessorKey: "from",
     header: "From",
     cell: ({ row }) => {
-      const address =
+      const hexAddress =
         "from" in row.original
           ? row.original.from
           : row.original.raw_data.contract?.[0].parameter?.value?.owner_address;
-      return address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "N/A";
+
+      if (!hexAddress) return "N/A";
+
+      // Convert hex address to T address
+      const tAddress = convertAddress(hexAddress);
+
+      // Truncate the address for display
+      return `${tAddress.slice(0, 6)}...${tAddress.slice(-4)}`;
     },
   },
-
   {
+    accessorKey: "to",
+    header: "To",
+    cell: ({ row }) => {
+      const hexAddress =
+        "to" in row.original
+          ? row.original.to
+          : row.original.raw_data.contract?.[0].parameter?.value?.to_address;
+
+      if (!hexAddress) return "N/A";
+
+      // Convert hex address to T address
+      const tAddress = convertAddress(hexAddress);
+
+      // Truncate the address for display
+      return `${tAddress.slice(0, 6)}...${tAddress.slice(-4)}`;
+    },
+  },
+  /* {
     accessorKey: "to",
     header: "To",
     cell: ({ row }) => {
@@ -337,10 +407,9 @@ export const columns: ColumnDef<CombinedData>[] = [
         "to" in row.original
           ? row.original.to
           : row.original.raw_data?.contract?.[0]?.parameter?.value?.to_address;
-
       return address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "N/A";
     },
-  },
+  }, */
 
   /* {
     accessorKey: "ownerAddress",

@@ -1,34 +1,51 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
+import { CoinQuote } from "@/types";
 
-export async function GET() {
-  const liveKey = process.env.NEXT_PUBLIC_COIN_API_KEY;
+export async function GET(request: Request) {
+  const apiKey = process.env.COIN_API_KEY;
+
+  // Get URL parameters
+  // const { searchParams } = new URL(request.url);
+  // const ids = searchParams.get("id");
+
+  if (!apiKey) {
+    return NextResponse.json(
+      { error: "API key not configured" },
+      { status: 500 }
+    );
+  }
+
   const url =
-    "https://pro-api.coinmarketcap.com/v1/exchange/quotes/historical?id=1937";
+    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest";
 
   try {
-    const response = await axios.get(url, {
+    const response = await axios.get<CoinQuote>(url, {
+      params: {
+        id: ["825", "1958"].join(","),
+      },
       headers: {
-        "X-CMC_PRO_API_KEY": liveKey as string,
+        "X-CMC_PRO_API_KEY": apiKey,
       },
     });
-    console.log(liveKey);
 
-    const data = response.data;
+    const { data } = response;
 
-    if (!data) {
-      throw new Error("No data received");
+    if (!data || !data.data) {
+      throw new Error("Invalid response format");
     }
 
-    console.log(data);
     return NextResponse.json(data);
   } catch (error) {
-    console.error(
-      "Error fetching crypto data:",
-      (error as Error).message || error
-    );
+    if (axios.isAxiosError(error)) {
+      const statusCode = error.response?.status || 500;
+      const message =
+        error.response?.data?.status?.error_message || error.message;
+      return NextResponse.json({ error: message }, { status: statusCode });
+    }
+
     return NextResponse.json(
-      { error: "Failed to fetch data" },
+      { error: "An unexpected error occurred" },
       { status: 500 }
     );
   }

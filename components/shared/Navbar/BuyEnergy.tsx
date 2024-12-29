@@ -64,7 +64,7 @@ function BuyEnergy() {
       const calculatedSavings =
         (referenceValue - calcResult) * flashSaleDiscount;
       return calculatedSavings.toFixed(2);
-    } else if (transfer && selectMode === 1.2) {
+    } else if (transfer && selectMode === 1.9) {
       const transferValue = parseFloat(transfer as string);
       const calcResult = transferValue * selectMode;
       // const referenceValue = 1.72 * transferValue;
@@ -158,10 +158,10 @@ function BuyEnergy() {
                       </SelectItem>
                       <SelectItem
                         id="mySelect"
-                        value="1.2"
+                        value="1.9"
                         className=" px-1 sm:px-1 lg:px-2"
                       >
-                        1.2 USDT/Unlimited
+                        1.9 USDT/Unlimited
                       </SelectItem>
                     </SelectContent>
                   </Select>

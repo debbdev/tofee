@@ -130,3 +130,45 @@ export interface TronGridEvent {
   };
   block_timestamp: number;
 }
+
+export interface CoinQuote {
+  data: {
+    [symbol: string]: {
+      id: number;
+      name: string;
+      symbol: string;
+      quote: {
+        USD: {
+          price: number;
+          volume_24h: number;
+          market_cap: number;
+          percent_change_24h: number;
+          percent_change_7d: number;
+          last_updated: string;
+        };
+      };
+    };
+  };
+  status: {
+    timestamp: string;
+    error_code: number;
+    error_message: string | null;
+  };
+}
+
+export interface PriceData {
+  tron: {
+    symbol: string;
+    name: string;
+    price: number;
+    percentChange24h: number;
+    lastUpdated: Date;
+  };
+  tomo: {
+    symbol: string;
+    name: string;
+    price: number;
+    percentChange24h: number;
+    lastUpdated: Date;
+  };
+}

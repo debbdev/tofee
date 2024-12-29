@@ -5,12 +5,15 @@ import { Button } from "@/components/ui/button";
 import FlipCountdown from "@rumess/react-flip-countdown";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useQRCode } from "next-qrcode";
+import { PriceData } from "@/types";
+
 function EnergyMine() {
   const { SVG } = useQRCode();
   // eslint-disable-next-line no-unused-vars
   const [mode, setMode] = useState<"dark" | "light">("dark");
   const [usdt, setUSDT] = useState<string>("");
   const [trx, setTRX] = useState<string>("");
+  const [price, setPrice] = useState<PriceData | null>(null);
   const [result, setResult] = useState<string | null>(null);
   const [dialog, setDialog] = useState<{ visible: boolean; message: string }>({
     visible: false,
@@ -29,17 +32,61 @@ function EnergyMine() {
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      try {
+        const response = await fetch("/api/liveTicker");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to fetch price");
+        }
+
+        const tronData = data.data["825"];
+        const tomoData = data.data["1958"];
+        console.log(tronData);
+        console.log(tomoData);
+        setPrice({
+          tron: {
+            symbol: tronData.symbol,
+            name: tronData.name,
+            price: tronData.quote.USD.price,
+            percentChange24h: tronData.quote.USD.percent_change_24h,
+            lastUpdated: new Date(tronData.quote.USD.last_updated),
+          },
+          tomo: {
+            symbol: tomoData.symbol,
+            name: tomoData.name,
+            price: tomoData.quote.USD.price,
+            percentChange24h: tomoData.quote.USD.percent_change_24h,
+            lastUpdated: new Date(tomoData.quote.USD.last_updated),
+          },
+        });
+      } catch (err) {
+        console.error("Error fetching price:", err);
+      }
+    };
+
+    fetchPrice();
+
+    // Refresh price every 60 seconds
+    const interval = setInterval(fetchPrice, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
   // Conversion rate
   // const conversionRate = 0.1284;
   // const difference = 0.1;
-  const usdtCharge = 5.86;
+  // const usdtCharge = 5.86;
+  const usdtCharge = price?.tomo.price;
 
   // Update TRX when USDT changes
   const handleUsdtChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const usdtValue = parseFloat(e.target.value);
     setUSDT(e.target.value);
     if (!isNaN(usdtValue)) {
-      setTRX((usdtValue * usdtCharge).toFixed(2));
+      setTRX((usdtCharge ? usdtCharge * usdtValue : 0).toFixed(2));
     } else {
       setTRX("");
     }
@@ -50,7 +97,7 @@ function EnergyMine() {
     const trxValue = parseFloat(e.target.value);
     setTRX(e.target.value);
     if (!isNaN(trxValue)) {
-      setUSDT((trxValue / usdtCharge).toFixed(2));
+      setUSDT((usdtCharge ? trxValue / usdtCharge : 0).toFixed(2));
     } else {
       setUSDT("");
     }
