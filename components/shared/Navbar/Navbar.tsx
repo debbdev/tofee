@@ -7,6 +7,7 @@ import Page from "@/app/(auth)/sign-in/[[...sign-in]]/page";
 import MobileNav from "./MobileNav";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import UserHistory from "./UserHistory";
 
 export default function Navbar() {
   const { user } = useUser();
@@ -32,7 +33,7 @@ export default function Navbar() {
           {/* <div className="hidden sm:block">
             <Theme />
           </div> */}
-
+          <UserHistory />
           <Dialog>
             {!user ? (
               <DialogTrigger asChild>
